@@ -13,16 +13,20 @@ struct student
 	student(std::string name, unsigned id, unsigned score) : name{ name }, id{ id }, score{ score } {}
 };
 
+enum class sort_type
+{
+	name,
+	id,
+	score
+};
+
 void save_data_to_memory(std::vector<student>& data, std::string file_name);
 
 void check_file(std::ifstream& source_file);
 
-void sort_data();
+void sort_data(const std::vector<student>& data);
 
-void sort_three_ways(char choice);
+void sort_three_ways(const std::vector<student>& data, char choice);
 
-bool sort_by_name(const student& lhs, const student& rhs) { return lhs.name > rhs.name; }
+void sort_by(const std::vector<student>& data, sort_type type);
 
-bool sort_by_id(const student& lhs, const student& rhs) { return lhs.id > rhs.id; }
-
-bool sort_by_score(const student& lhs, const student& rhs) { return lhs.score > rhs.score; }

@@ -2,6 +2,7 @@
 #include <string>
 
 #include "helper_functions.h"
+#include "sorting_functions.h"
 
 void save_data_to_memory(std::vector<student>& data, std::string file_name)
 {
@@ -29,7 +30,7 @@ void check_file(std::ifstream& source_file)
 	}
 }
 
-void sort_data()
+void sort_data(const std::vector<student>& data)
 {
 	std::cout << "Please select criteria to sort by.\n"
 		<< "N for name.\n"
@@ -37,29 +38,37 @@ void sort_data()
 		<< "S for score.\n";
 	char choice;
 	std::cin >> choice;
-	sort_three_ways(choice);
+	sort_three_ways(data, choice);
 	// offer option to save or to sort again.
 }
 
-void sort_three_ways(char choice)
+// DRY me
+void sort_three_ways(const std::vector<student>& data, char choice)
 {
 	switch (choice)
 	{
 	case 'n':
 	case 'N':
-		// sort by name
+		sort_by(data, sort_type::name);
 		break;
 	case 'i':
 	case 'I':
-		// sort by id
+		sort_by(data, sort_type::id);
 		break;
 	case 's':
 	case 'S':
-		// sort by score
+		sort_by(data, sort_type::score);
 		break;
 	default:
 		std::cerr << "Invalid selection. Please try again.\n";
-		sort_data();
+		sort_data(data);
 		break;
 	}
+}
+
+void sort_by(const std::vector<student>& data, sort_type type)
+{
+	bubble_sort(data, type);
+	bucket_sort(data, type);
+	counting_sort(data, type);
 }
