@@ -1,4 +1,5 @@
 #include <iostream>
+#include <functional>
 #include <string>
 
 #include "helper_functions.h"
@@ -49,22 +50,21 @@ void sort_data(const std::vector<student>& data)
 	save_or_sort_again(data, sorted_data);
 }
 
-
 void sort_three_ways(const std::vector<student>& data, std::vector<student>& sorted_data, char choice)
 {
 	switch (choice)
 	{
 	case 'n':
 	case 'N':
-		sort_by(data, sorted_data, sort_type::name);
+		sort_by(data, sorted_data, sort_by_name);
 		break;
 	case 'i':
 	case 'I':
-		sort_by(data, sorted_data, sort_type::id);
+		sort_by(data, sorted_data, sort_by_id);
 		break;
 	case 's':
 	case 'S':
-		sort_by(data, sorted_data, sort_type::score);
+		sort_by(data, sorted_data, sort_by_score);
 		break;
 	default:
 		std::cerr << "Invalid selection. Please try again.\n";
@@ -73,11 +73,11 @@ void sort_three_ways(const std::vector<student>& data, std::vector<student>& sor
 	}
 }
 
-void sort_by(const std::vector<student>& data, std::vector<student>& sorted_data, sort_type type)
+void sort_by(const std::vector<student>& data, std::vector<student>& sorted_data, std::function<bool> sort_type)
 {
-	bubble_sort(data, sorted_data, type);
-	bucket_sort(data, type);
-	counting_sort(data, type);
+	bubble_sort(data, sorted_data, sort_type);
+	bucket_sort(data, sort_type);
+	counting_sort(data, sort_type);
 }
 
 void save_or_sort_again(const std::vector<student>& data, const std::vector<student>& sorted_data)

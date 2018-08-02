@@ -4,12 +4,12 @@
 
 #include "helper_functions.h"
 
-// The functions take by copy in order to preserve the original during modification.
-void bubble_sort(std::vector<student> data, std::vector<student>& sorted_data, sort_type type);
+// templating and implementing the use of iterators will be non-trivial.
+void bubble_sort(std::vector<student> data, std::vector<student>& sorted_data, std::function<bool> sort_type);
 
-void bucket_sort(std::vector<student> data, sort_type type);
+void bucket_sort(std::vector<student> data, std::function<bool> sort_type);
 
-void counting_sort(std::vector<student> data, sort_type type);
+void counting_sort(std::vector<student> data, std::function<bool> sort_type);
 
 bool sort_by_name(const student& lhs, const student& rhs) { return lhs.name > rhs.name; }
 
