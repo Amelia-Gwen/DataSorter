@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClCompile Include="DataSorter.cpp" />
     <ClCompile Include="helper_functions.cpp" />
+    <ClCompile Include="sorting_functions.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helper_functions.h" />

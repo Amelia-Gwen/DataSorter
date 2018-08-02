@@ -38,13 +38,13 @@ void check_file(std::ifstream& source_file)
 void sort_data(const std::vector<student>& data)
 {
 	std::cout << "Please select criteria to sort by.\n"
-		<< "N for name.\n"
-		<< "I for student id.\n"
-		<< "S for score.\n";
+		<< "N for Name.\n"
+		<< "I for Student ID.\n"
+		<< "S for Score.\n";
 	char choice;
 	std::cin >> choice;
 	sort_three_ways(data, choice);
-	// offer option to save or to sort again.
+	save_or_sort_again(data);
 }
 
 void sort_three_ways(const std::vector<student>& data, char choice)
@@ -76,3 +76,38 @@ void sort_by(const std::vector<student>& data, sort_type type)
 	bucket_sort(data, type);
 	counting_sort(data, type);
 }
+
+void save_or_sort_again(const std::vector<student>& data)
+{
+	std::cout << "Would you like to save the sorted data or sort again?\n"
+		<< "S for Save.\n"
+		<< "R for Retry sorting.\n";
+	char choice;
+	std::cin >> choice;
+	post_sort_selection(data, choice);
+}
+
+void post_sort_selection(const std::vector<student>& data, char choice)
+{
+	switch (choice)
+	{
+	case 's':
+	case 'S':
+		save_to_file(data);
+		break;
+	case 'r':
+	case 'R':
+		sort_data(data);
+		break;
+	default:
+		std::cerr << "Invalid selection. Please try again.\n";
+		save_or_sort_again(data);
+		break;
+	}
+}
+
+void save_to_file(const std::vector<student>& data)
+{
+	//
+}
+

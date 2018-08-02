@@ -30,3 +30,8 @@ void sort_three_ways(const std::vector<student>& data, char choice);
 
 void sort_by(const std::vector<student>& data, sort_type type);
 
+void save_or_sort_again(const std::vector<student>& data);
+
+void post_sort_selection(const std::vector<student>& data, char choice);
+
+void save_to_file(const std::vector<student>& data);
