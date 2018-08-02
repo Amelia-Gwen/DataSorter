@@ -108,6 +108,23 @@ void post_sort_selection(const std::vector<student>& data, char choice)
 
 void save_to_file(const std::vector<student>& data)
 {
-	//
+	std::cout << "Please provide a name for your file.\n"
+		<< "Note: Data will be saved to current path.\n"
+		<< "If file name exists it will be overwritten.\n";
+	std::string file_name;
+	std::cin >> file_name;
+	std::ofstream write_file{ file_name };
+	if (!write_file)
+	{
+		std::cerr << "File could not be opened. Please try again.\n";
+		save_to_file(data);
+	}
+	write_file << "NAME,ID,SCORE\n";
+	for (auto&& student : data)
+	{
+		write_file << student.name << ','
+			<< student.id << ','
+			<< student.score << '\n';
+	}
+	sort_data(data);
 }
-
