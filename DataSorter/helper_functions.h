@@ -13,3 +13,7 @@ struct student
 };
 
 void check_file(std::ifstream& source_file);
+
+void chose_column_and_sort();
+
+void sort_three_ways(char choice);
