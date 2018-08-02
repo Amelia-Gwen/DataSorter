@@ -15,7 +15,7 @@ void check_file(std::ifstream& source_file)
 	}
 }
 
-void chose_column_and_sort()
+void sort_data()
 {
 	std::cout << "Please select criteria to sort by.\n"
 		<< "N for name.\n"
@@ -23,8 +23,8 @@ void chose_column_and_sort()
 		<< "S for score.\n";
 	char choice;
 	std::cin >> choice;
-
-	// sort
+	sort_three_ways(choice);
+	// offer option to save or to sort again.
 }
 
 void sort_three_ways(char choice)
@@ -45,7 +45,7 @@ void sort_three_ways(char choice)
 		break;
 	default:
 		std::cerr << "Invalid selection. Please try again.\n";
-		chose_column_and_sort();
+		sort_data();
 		break;
 	}
 }
