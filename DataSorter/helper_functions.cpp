@@ -75,9 +75,9 @@ void sort_three_ways(const std::vector<student>& data, std::vector<student>& sor
 
 void sort_by(const std::vector<student>& data, std::vector<student>& sorted_data, sort_type type)
 {
-	bucket_sort(data, sorted_data, type);
+	bubble_sort(data, sorted_data, type);
+	bucket_sort(data, type);
 	counting_sort(data, type);
-	bubble_sort(data, type);
 }
 
 void save_or_sort_again(const std::vector<student>& data, const std::vector<student>& sorted_data)
