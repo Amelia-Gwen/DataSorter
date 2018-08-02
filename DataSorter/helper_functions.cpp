@@ -3,6 +3,20 @@
 
 #include "helper_functions.h"
 
+void save_data_to_memory(std::vector<student>& data, std::string file_name)
+{
+	std::ifstream source_file{ file_name };
+	check_file(source_file);
+	std::string name;
+	unsigned id;
+	unsigned score;
+	while (!source_file.eofbit)
+	{
+		source_file >> name >> id >> score;
+		data.emplace_back(student(name, id, score));
+	}
+}
+
 void check_file(std::ifstream& source_file)
 {
 	if (!source_file)
