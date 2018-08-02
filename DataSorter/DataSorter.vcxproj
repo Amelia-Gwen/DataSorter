@@ -92,6 +92,7 @@
       <ConformanceMode>true</ConformanceMode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
+      <PrecompiledHeaderFile />
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -124,6 +125,7 @@
       <ConformanceMode>true</ConformanceMode>
       <TreatWarningAsError>true</TreatWarningAsError>
       <DisableLanguageExtensions>true</DisableLanguageExtensions>
+      <PrecompiledHeaderFile />
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -152,6 +154,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="DataSorter.cpp" />
+    <ClCompile Include="helper_functions.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="helper_functions.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
