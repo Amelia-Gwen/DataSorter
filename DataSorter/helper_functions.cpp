@@ -41,27 +41,30 @@ void sort_data(const std::vector<student>& data)
 		<< "N for Name.\n"
 		<< "I for Student ID.\n"
 		<< "S for Score.\n";
+	std::vector<student> sorted_data;
+	sorted_data.reserve(100);
 	char choice;
 	std::cin >> choice;
-	sort_three_ways(data, choice);
-	save_or_sort_again(data);
+	sort_three_ways(data, sorted_data, choice);
+	save_or_sort_again(data, sorted_data);
 }
 
-void sort_three_ways(const std::vector<student>& data, char choice)
+
+void sort_three_ways(const std::vector<student>& data, std::vector<student>& sorted_data, char choice)
 {
 	switch (choice)
 	{
 	case 'n':
 	case 'N':
-		sort_by(data, sort_type::name);
+		sort_by(data, sorted_data, sort_type::name);
 		break;
 	case 'i':
 	case 'I':
-		sort_by(data, sort_type::id);
+		sort_by(data, sorted_data, sort_type::id);
 		break;
 	case 's':
 	case 'S':
-		sort_by(data, sort_type::score);
+		sort_by(data, sorted_data, sort_type::score);
 		break;
 	default:
 		std::cerr << "Invalid selection. Please try again.\n";
@@ -70,30 +73,30 @@ void sort_three_ways(const std::vector<student>& data, char choice)
 	}
 }
 
-void sort_by(const std::vector<student>& data, sort_type type)
+void sort_by(const std::vector<student>& data, std::vector<student>& sorted_data, sort_type type)
 {
-	bubble_sort(data, type);
-	bucket_sort(data, type);
+	bucket_sort(data, sorted_data, type);
 	counting_sort(data, type);
+	bubble_sort(data, type);
 }
 
-void save_or_sort_again(const std::vector<student>& data)
+void save_or_sort_again(const std::vector<student>& data, const std::vector<student>& sorted_data)
 {
 	std::cout << "Would you like to save the sorted data or sort again?\n"
 		<< "S for Save.\n"
 		<< "R for Retry sorting.\n";
 	char choice;
 	std::cin >> choice;
-	post_sort_selection(data, choice);
+	post_sort_selection(data, sorted_data, choice);
 }
 
-void post_sort_selection(const std::vector<student>& data, char choice)
+void post_sort_selection(const std::vector<student>& data, const std::vector<student>& sorted_data, char choice)
 {
 	switch (choice)
 	{
 	case 's':
 	case 'S':
-		save_to_file(data);
+		save_to_file(sorted_data);
 		break;
 	case 'r':
 	case 'R':
@@ -101,7 +104,7 @@ void post_sort_selection(const std::vector<student>& data, char choice)
 		break;
 	default:
 		std::cerr << "Invalid selection. Please try again.\n";
-		save_or_sort_again(data);
+		save_or_sort_again(data, sorted_data);
 		break;
 	}
 }
