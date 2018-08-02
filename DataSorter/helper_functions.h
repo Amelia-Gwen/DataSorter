@@ -17,4 +17,3 @@ void check_file(std::ifstream& source_file);
 void sort_data();
 
 void sort_three_ways(char choice);
-
