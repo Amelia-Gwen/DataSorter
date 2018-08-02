@@ -3,8 +3,10 @@
 
 #include "sorting_functions.h"
 
-void bubble_sort(std::vector<student> data, std::vector<student>& sorted_data, sort_type type)
+std::chrono::milliseconds bubble_sort(std::vector<student> data, std::vector<student>& sorted_data, sort_type type)
 {
+	std::cout << "Sorting with bubble sort. Press C to end sort.\n"
+		<< "----------|Finished\n";
 	switch (type)
 	{
 	case sort_type::name:
@@ -16,13 +18,16 @@ void bubble_sort(std::vector<student> data, std::vector<student>& sorted_data, s
 	default:
 		std::cerr << "Error selecting sort type. Aborting";
 	}
-	// start time
+	std::chrono::time_point<std::chrono::steady_clock> start = std::chrono::steady_clock::now();
 
-	// end time
+
+	std::chrono::time_point<std::chrono::steady_clock> end = std::chrono::steady_clock::now();
+	std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 	sorted_data = data;
+	return time_passed;
 }
 
-void bucket_sort(std::vector<student> data, sort_type type)
+std::chrono::milliseconds bucket_sort(std::vector<student> data, sort_type type)
 {
 	switch (type)
 	{
@@ -35,12 +40,15 @@ void bucket_sort(std::vector<student> data, sort_type type)
 	default:
 		std::cerr << "Error selecting sort type. Aborting";
 	}
-	// start time
+	std::chrono::time_point<std::chrono::steady_clock> start = std::chrono::steady_clock::now();
 
-	// end time
+
+	std::chrono::time_point<std::chrono::steady_clock> end = std::chrono::steady_clock::now();
+	std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+	return time_passed;
 }
 
-void counting_sort(std::vector<student> data, sort_type type)
+std::chrono::milliseconds counting_sort(std::vector<student> data, sort_type type)
 {
 	switch (type)
 	{
@@ -53,7 +61,10 @@ void counting_sort(std::vector<student> data, sort_type type)
 	default:
 		std::cerr << "Error selecting sort type. Aborting";
 	}
-	// start time
+	std::chrono::time_point<std::chrono::steady_clock> start = std::chrono::steady_clock::now();
 
-	// end time
+
+	std::chrono::time_point<std::chrono::steady_clock> end = std::chrono::steady_clock::now();
+	std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+	return time_passed;
 }

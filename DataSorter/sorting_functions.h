@@ -4,12 +4,11 @@
 
 #include "helper_functions.h"
 
-// templating and implementing the use of iterators will be non-trivial.
-void bubble_sort(std::vector<student> data, std::vector<student>& sorted_data, sort_type type);
+std::chrono::milliseconds bubble_sort(std::vector<student> data, std::vector<student>& sorted_data, sort_type type);
 
-void bucket_sort(std::vector<student> data, sort_type type);
+std::chrono::milliseconds bucket_sort(std::vector<student> data, sort_type type);
 
-void counting_sort(std::vector<student> data, sort_type type);
+std::chrono::milliseconds counting_sort(std::vector<student> data, sort_type type);
 
 bool sort_by_name(const student& lhs, const student& rhs) { return lhs.name > rhs.name; }
 
