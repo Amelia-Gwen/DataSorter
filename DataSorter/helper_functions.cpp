@@ -8,9 +8,14 @@ void save_data_to_memory(std::vector<student>& data, std::string file_name)
 {
 	std::ifstream source_file{ file_name };
 	check_file(source_file);
+	std::string throw_away;
 	std::string name;
 	unsigned id;
 	unsigned score;
+
+	// the first row of a csv are the column types and must be discarded
+	source_file >> throw_away >> throw_away >> throw_away;
+
 	while (!source_file.eofbit)
 	{
 		source_file >> name >> id >> score;
@@ -42,7 +47,6 @@ void sort_data(const std::vector<student>& data)
 	// offer option to save or to sort again.
 }
 
-// DRY me
 void sort_three_ways(const std::vector<student>& data, char choice)
 {
 	switch (choice)
