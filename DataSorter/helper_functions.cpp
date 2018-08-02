@@ -13,10 +13,10 @@ void save_data_to_memory(std::vector<student>& data, std::string file_name)
 	unsigned id;
 	unsigned score;
 
-	// the first row of a csv are the column types and must be discarded
+	// the first row of a csv file are the column types and must be discarded
 	source_file >> throw_away >> throw_away >> throw_away;
 
-	while (!source_file.eofbit)
+	while (source_file.peek() != EOF)
 	{
 		source_file >> name >> id >> score;
 		data.emplace_back(student(name, id, score));
