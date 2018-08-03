@@ -20,3 +20,5 @@ The sorting functions need reworked. As they are they do to much work. If I were
 Very few programs would require sorting the same unsorted data so many times and would thus not require maintaining copies of unmodified data. If I wanted to sort data from a file or other source I would do it as I streamed it, probably to a set or map depending on my needs, thus having 1 sorted data structure and no copying. Streaming the same data repeatedly didn't seem practical for this project however it may have worked well. I did not test sort during stream repeatedly but I felt mainting an open fstream throughout the lifetime of the program was not the best idea.
 
 the use of \_kbhit() and \_getch() for non-blocking IO is non-portable but the project was explicitly intended to be on the Windows platform. Multithreading would have been a better, more portable solution but is non-trivial.
+
+It should be noted that I did testing during the development process by writing to the console with std::cout. I did not save the tests or the results. That was an oversight. They can be recreated on request.
