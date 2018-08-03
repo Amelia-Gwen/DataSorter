@@ -75,11 +75,55 @@ void sort_three_ways(const std::vector<student>& data, std::vector<student>& sor
 
 void sort_by(const std::vector<student>& data, std::vector<student>& sorted_data, sort_type type)
 {
-	auto bubble_count = bubble_sort_timer(data, sorted_data, type);
-	auto bucket_count = bucket_sort_timer(data, type);
-	auto counting_count = counting_sort_timer(data, type);
+	long long bubble_time = bubble_sort(data, sorted_data, type);
+	long long bucket_time = bucket_sort(data, type);
+	long long merge_time = merge_sort(data, type);
 
-
+	if (bubble_time < merge_time && bubble_time < bucket_time)
+	{
+		if (merge_time > bucket_time)
+		{
+			std::cout << "merge " << merge_time << "ms.\n"
+				<< "bucket " << bucket_time << "ms.\n"
+				<< "bubble " << bubble_time << "ms.\n";
+		}
+		else
+		{
+			std::cout << "bucket " << bucket_time << "ms.\n"
+				<< "merge " << merge_time << "ms.\n"
+				<< "bubble " << bubble_time << "ms.\n";
+		}
+	}
+	else
+	{
+		if (merge_time > bubble_time)
+		{
+			std::cout << "merge " << merge_time << "ms.\n"
+				<< "bubble " << bubble_time << "ms.\n"
+				<< "bucket " << bucket_time << "ms.\n";
+		}
+		else if (bucket_time > bubble_time)
+		{
+			std::cout << "bucket " << bucket_time << "ms.\n"
+				<< "bubble " << bubble_time << "ms.\n"
+				<< "merge " << merge_time << "ms.\n";
+		}
+		else
+		{
+			if (merge_time > bucket_time)
+			{
+				std::cout << "bubble " << bubble_time << "ms.\n"
+					<< "merge " << merge_time << "ms.\n"
+					<< "bucket " << bucket_time << "ms.\n";
+			}
+			else
+			{
+				std::cout << "bubble " << bubble_time << "ms.\n"
+					<< "bucket " << bucket_time << "ms.\n"
+					<< "merge " << merge_time << "ms.\n";
+			}
+		}
+	}
 }
 
 void save_or_sort_again(const std::vector<student>& data, const std::vector<student>& sorted_data)

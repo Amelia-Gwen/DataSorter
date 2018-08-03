@@ -6,7 +6,7 @@
 
 #include "sorting_functions.h"
 
-void bubble_sort_timer(std::vector<student> data, std::vector<student>& sorted_data, sort_type type)
+long long bubble_sort(std::vector<student> data, std::vector<student>& sorted_data, sort_type type)
 {
 	std::cout << "Sorting with bubble sort. Press C to end sort.\n"
 		<< "----------|Finished\n";
@@ -112,9 +112,10 @@ void bubble_sort_timer(std::vector<student> data, std::vector<student>& sorted_d
 	auto end = std::chrono::steady_clock::now();
 	std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 	sorted_data = data;
+	return time_passed.count();
 }
 
-void bucket_sort_timer(std::vector<student> data, sort_type type)
+long long bucket_sort(std::vector<student> data, sort_type type)
 {
 	std::cout << "Sorting with bucket sort. Press C to end sort.\n"
 		<< "----------|Finished\n";
@@ -142,9 +143,10 @@ void bucket_sort_timer(std::vector<student> data, sort_type type)
 
 	auto end = std::chrono::steady_clock::now();
 	std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+	return time_passed.count();
 }
 
-void counting_sort_timer(std::vector<student> data, sort_type type)
+long long merge_sort(std::vector<student> data, sort_type type)
 {
 	std::cout << "Sorting with counting sort. Press C to end sort.\n"
 		<< "----------|Finished\n";
@@ -172,4 +174,5 @@ void counting_sort_timer(std::vector<student> data, sort_type type)
 
 	auto end = std::chrono::steady_clock::now();
 	std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+	return time_passed.count();
 }
