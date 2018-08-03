@@ -3,7 +3,6 @@
 #include <string>
 
 #include "helper_functions.h"
-#include "sorting_functions.h"
 
 void save_data_to_memory(std::vector<student>& data, std::string file_name)
 {
