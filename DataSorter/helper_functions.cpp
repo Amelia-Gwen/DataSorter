@@ -1,24 +1,41 @@
 #include <iostream>
 #include <functional>
 #include <string>
+#include <sstream>
 
+#include "sorting_functions.h"
 #include "helper_functions.h"
 
 void save_data_to_memory(std::vector<student>& data, std::string file_name)
 {
 	std::ifstream source_file{ file_name };
 	check_file(source_file);
-	std::string throw_away;
+	std::string row;
 	std::string name;
 	unsigned id;
 	unsigned score;
+	std::vector<std::string> raw_values;
 
 	// the first row of a csv file are the column types and must be discarded
-	source_file >> throw_away >> throw_away >> throw_away;
+	source_file >> row;
 
-	while (source_file.peek() != EOF)
+	while (std::getline(source_file, row))
 	{
-		source_file >> name >> id >> score;
+		std::istringstream lineparse(row);
+		std::string cell;
+
+		while (std::getline(lineparse, cell, ','))
+		{
+			raw_values.push_back(cell);
+		}
+	}
+
+	for (auto i = 0; i < raw_values.size(); i += 3)
+	{
+		name = raw_values[i];
+		id = std::stoi(raw_values[i+1]);
+		score = std::stoi(raw_values[i+2]);
+
 		data.emplace_back(student(name, id, score));
 	}
 }
@@ -76,50 +93,50 @@ void sort_by(const std::vector<student>& data, std::vector<student>& sorted_data
 {
 	long long bubble_time = bubble_sort(data, sorted_data, type);
 	long long bucket_time = bucket_sort(data, type);
-	long long merge_time = merge_sort(data, type);
+	long long selection_time = selection_sort(data, type);
 
-	if (bubble_time < merge_time && bubble_time < bucket_time)
+	if (bubble_time > selection_time && bubble_time > bucket_time)
 	{
-		if (merge_time > bucket_time)
+		if (selection_time < bucket_time)
 		{
-			std::cout << "merge " << merge_time << "ms.\n"
+			std::cout << "selection " << selection_time << "ms.\n"
 				<< "bucket " << bucket_time << "ms.\n"
 				<< "bubble " << bubble_time << "ms.\n";
 		}
 		else
 		{
 			std::cout << "bucket " << bucket_time << "ms.\n"
-				<< "merge " << merge_time << "ms.\n"
+				<< "selection " << selection_time << "ms.\n"
 				<< "bubble " << bubble_time << "ms.\n";
 		}
 	}
 	else
 	{
-		if (merge_time > bubble_time)
+		if (selection_time < bubble_time)
 		{
-			std::cout << "merge " << merge_time << "ms.\n"
+			std::cout << "selection " << selection_time << "ms.\n"
 				<< "bubble " << bubble_time << "ms.\n"
 				<< "bucket " << bucket_time << "ms.\n";
 		}
-		else if (bucket_time > bubble_time)
+		else if (bucket_time < bubble_time)
 		{
 			std::cout << "bucket " << bucket_time << "ms.\n"
 				<< "bubble " << bubble_time << "ms.\n"
-				<< "merge " << merge_time << "ms.\n";
+				<< "selection " << selection_time << "ms.\n";
 		}
 		else
 		{
-			if (merge_time > bucket_time)
+			if (selection_time < bucket_time)
 			{
 				std::cout << "bubble " << bubble_time << "ms.\n"
-					<< "merge " << merge_time << "ms.\n"
+					<< "selection " << selection_time << "ms.\n"
 					<< "bucket " << bucket_time << "ms.\n";
 			}
 			else
 			{
 				std::cout << "bubble " << bubble_time << "ms.\n"
 					<< "bucket " << bucket_time << "ms.\n"
-					<< "merge " << merge_time << "ms.\n";
+					<< "selection " << selection_time << "ms.\n";
 			}
 		}
 	}
@@ -159,6 +176,7 @@ void save_to_file(const std::vector<student>& data)
 	std::cout << "Please provide a name for your file.\n"
 		<< "Note: Data will be saved to current path.\n"
 		<< "If file name exists it will be overwritten.\n";
+	
 	std::string file_name;
 	std::cin >> file_name;
 	std::ofstream write_file{ file_name };

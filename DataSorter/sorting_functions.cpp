@@ -5,8 +5,13 @@
 #include <cstddef>
 #include <iostream>
 
-#include "helper_functions.h"
 #include "sorting_functions.h"
+
+bool sort_by_name(student lhs, student rhs) { return lhs.name > rhs.name; }
+
+bool sort_by_id(student lhs, student rhs) { return lhs.id > rhs.id; }
+
+bool sort_by_score(student lhs, student rhs) { return lhs.score > rhs.score; }
 
 long long bubble_sort(std::vector<student> data, std::vector<student>& sorted_data, sort_type type)
 {
@@ -41,13 +46,13 @@ long long bubble_sort(std::vector<student> data, std::vector<student>& sorted_da
 			}
 			--last_unsorted;
 			++count;
-			if (count == data.size() / 10)
+			if (count == 10)
 			{
 				std::cout << '*';
 				count = 0;
 			}
 		}
-		std::cout << '*';
+		std::cout << "*\n";
 	}
 	else if (type == sort_type::id)
 	{
@@ -71,13 +76,13 @@ long long bubble_sort(std::vector<student> data, std::vector<student>& sorted_da
 			}
 			--last_unsorted;
 			++count;
-			if (count == data.size() / 10)
+			if (count == 10)
 			{
 				std::cout << '*';
 				count = 0;
 			}
 		}
-		std::cout << '*';
+		std::cout << "*\n";
 	}
 	else
 	{
@@ -101,18 +106,22 @@ long long bubble_sort(std::vector<student> data, std::vector<student>& sorted_da
 			}
 			--last_unsorted;
 			++count;
-			if (count == data.size() / 10)
+			if (count == 10)
 			{
 				std::cout << '*';
 				count = 0;
 			}
 		}
-		std::cout << '*';
+		std::cout << "*\n";
     }
 
 	auto end = std::chrono::steady_clock::now();
 	std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-	sorted_data = data;
+	sorted_data.clear();
+	for (auto&& students : data)
+	{
+		sorted_data.emplace_back(student(students.name, students.id, students.score));
+	}
 	return time_passed.count();
 }
 
@@ -216,7 +225,6 @@ long long bucket_sort(std::vector<student> data, sort_type type)
 			std::sort(std::begin(u_w), std::end(u_w), sort_by_name);
 			std::cout << '*';
 			std::sort(std::begin(x_z), std::end(x_z), sort_by_name);
-			std::cout << '*';
 
 			data.clear();
 			data.insert(data.end(), a_c.begin(), a_c.end());
@@ -228,7 +236,7 @@ long long bucket_sort(std::vector<student> data, sort_type type)
 			data.insert(data.end(), s_t.begin(), s_t.end());
 			data.insert(data.end(), u_w.begin(), u_w.end());
 			data.insert(data.end(), x_z.begin(), x_z.end());
-			std::cout << '*';
+			std::cout << "*\n";
 		}
 	}
 	else if (type == sort_type::id)
@@ -316,7 +324,6 @@ long long bucket_sort(std::vector<student> data, sort_type type)
 			std::sort(std::begin(eighties), std::end(eighties), sort_by_id);
 			std::cout << '*';
 			std::sort(std::begin(nineties), std::end(nineties), sort_by_id);
-			std::cout << '*';
 
 			data.clear();
 			data.insert(data.end(), ones.begin(), ones.end());
@@ -329,7 +336,7 @@ long long bucket_sort(std::vector<student> data, sort_type type)
 			data.insert(data.end(), seventies.begin(), seventies.end());
 			data.insert(data.end(), eighties.begin(), eighties.end());
 			data.insert(data.end(), nineties.begin(), nineties.end());
-			std::cout << '*';
+			std::cout << "*\n";
 		}
 	}
 	else
@@ -418,7 +425,6 @@ long long bucket_sort(std::vector<student> data, sort_type type)
 			std::sort(std::begin(nine_hundred), std::end(nine_hundred), sort_by_id);
 			std::cout << '*';
 			std::sort(std::begin(one_thousand), std::end(one_thousand), sort_by_id);
-			std::cout << '*';
 
 			data.clear();
 			data.insert(data.end(), one_hundred.begin(), one_hundred.end());
@@ -431,7 +437,7 @@ long long bucket_sort(std::vector<student> data, sort_type type)
 			data.insert(data.end(), eight_hundred.begin(), eight_hundred.end());
 			data.insert(data.end(), nine_hundred.begin(), nine_hundred.end());
 			data.insert(data.end(), one_thousand.begin(), one_thousand.end());
-			std::cout << '*';
+			std::cout << "*\n";
 		}
 	}
 
@@ -440,27 +446,27 @@ long long bucket_sort(std::vector<student> data, sort_type type)
 	return time_passed.count();
 }
 
-long long merge_sort(std::vector<student> data, sort_type type)
+long long selection_sort(std::vector<student> data, sort_type type)
 {
-	std::cout << "Sorting with counting sort. Press C to end sort.\n"
+	std::cout << "Sorting with selection sort. Press C to end sort.\n"
 		<< "----------|Finished\n";
 
 	bool stopped{ false };
 
 	auto start = std::chrono::steady_clock::now();
 
-	//if (type == sort_type::name)
-	//{
-	//	// sort students by name
-	//}
-	//else if (type == sort_type::id)
-	//{
+	if (type == sort_type::name)
+	{
 
-	//}
-	//else
-	//{
+	}
+	else if (type == sort_type::id)
+	{
 
-	//}
+	}
+	else
+	{
+
+	}
 
 	auto end = std::chrono::steady_clock::now();
 	std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
