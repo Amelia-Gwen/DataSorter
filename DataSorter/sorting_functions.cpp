@@ -28,7 +28,7 @@ long long bubble_sort(std::vector<student> data, std::vector<student>& sorted_da
 	{
 		while (!stopped && last_unsorted > 0)
 		{
-			for (std::size_t i = 0; i < last_unsorted - 1; ++i)
+			for (std::size_t i = 0; i < last_unsorted; ++i)
 			{
 				if (data[i].name > data[i + 1].name)
 				{
@@ -58,7 +58,7 @@ long long bubble_sort(std::vector<student> data, std::vector<student>& sorted_da
 	{
 		while (!stopped && last_unsorted > 0)
 		{
-			for (std::size_t i = 0; i < last_unsorted - 1; ++i)
+			for (std::size_t i = 0; i < last_unsorted; ++i)
 			{
 				if (data[i].id > data[i + 1].id)
 				{
@@ -88,7 +88,7 @@ long long bubble_sort(std::vector<student> data, std::vector<student>& sorted_da
 	{
 		while (!stopped && last_unsorted > 0)
 		{
-			for (std::size_t i = 0; i < last_unsorted - 1; ++i)
+			for (std::size_t i = 0; i < last_unsorted; ++i)
 			{
 				if (data[i].score > data[i + 1].score)
 				{
