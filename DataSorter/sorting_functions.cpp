@@ -46,7 +46,7 @@ long long bubble_sort(std::vector<student> data, std::vector<student>& sorted_da
 			}
 			--last_unsorted;
 			++count;
-			if (count == 10)
+			if (count > data.size() / 10)
 			{
 				std::cout << '*';
 				count = 0;
@@ -76,7 +76,7 @@ long long bubble_sort(std::vector<student> data, std::vector<student>& sorted_da
 			}
 			--last_unsorted;
 			++count;
-			if (count == 10)
+			if (count > data.size() / 10)
 			{
 				std::cout << '*';
 				count = 0;
@@ -106,7 +106,7 @@ long long bubble_sort(std::vector<student> data, std::vector<student>& sorted_da
 			}
 			--last_unsorted;
 			++count;
-			if (count == 10)
+			if (count > data.size() / 10)
 			{
 				std::cout << '*';
 				count = 0;
@@ -453,20 +453,85 @@ long long selection_sort(std::vector<student> data, sort_type type)
 		<< "----------|Finished\n";
 
 	bool stopped{ false };
+	std::size_t first_unsorted = 0;
+	std::size_t count = 0;
 
 	auto start = std::chrono::steady_clock::now();
 
 	if (type == sort_type::name)
 	{
-
+		while (first_unsorted < data.size())
+		{
+			std::size_t index = first_unsorted;
+			for (std::size_t i = first_unsorted; i < data.size(); ++i)
+			{
+				if (data[i].name < data[index].name)
+				{
+					index = i;
+				}
+			}
+			if (index != first_unsorted)
+			{
+				std::swap(data[first_unsorted], data[index]);
+			}
+			++first_unsorted;
+			++count;
+			if (count > data.size() / 10)
+			{
+				std::cout << '*';
+				count = 0;
+			}
+		}
 	}
 	else if (type == sort_type::id)
 	{
-
+		while (first_unsorted < data.size())
+		{
+			std::size_t index = first_unsorted;
+			for (std::size_t i = first_unsorted; i < data.size(); ++i)
+			{
+				if (data[i].id < data[index].id)
+				{
+					index = i;
+				}
+			}
+			if (index != first_unsorted)
+			{
+				std::swap(data[first_unsorted], data[index]);
+			}
+			++first_unsorted;
+			++count;
+			if (count > data.size() / 10)
+			{
+				std::cout << '*';
+				count = 0;
+			}
+		}
 	}
 	else
 	{
-
+		while (first_unsorted < data.size())
+		{
+			std::size_t index = first_unsorted;
+			for (std::size_t i = first_unsorted; i < data.size(); ++i)
+			{
+				if (data[i].score < data[index].score)
+				{
+					index = i;
+				}
+			}
+			if (index != first_unsorted)
+			{
+				std::swap(data[first_unsorted], data[index]);
+			}
+			++first_unsorted;
+			++count;
+			if (count > data.size() / 10)
+			{
+				std::cout << '*';
+				count = 0;
+			}
+		}
 	}
 
 	auto end = std::chrono::steady_clock::now();
