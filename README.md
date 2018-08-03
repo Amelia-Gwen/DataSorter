@@ -4,9 +4,13 @@ A list of decisions made in no particular order.
 Use of console UI seemed simple and within the scope set for the project.
 
 The chosen sort methods were:
+
   Bubble Sort - chosen for its known poor performance.
+  
   Bucket Sort - chosen because I wanted to see it used with strings.
+  
   Merge Sort - for its general usefulness.
+  
 *Note: I would usually use std::sort for any sorting needs.
 
 I tried to follow OOP approach to the problem. Although it is more of a mix of procedural and OOP styles. Procedural may have been a better approach considering the scope of the problem but I don't think so.The major drawback to the OOP structure is the constant passing of the data structure by const& levelafter level in the function calls.
