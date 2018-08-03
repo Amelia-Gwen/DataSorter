@@ -4,8 +4,8 @@
 
 #include "helper_functions.h"
 
-auto bubble_sort_timer(std::vector<student> data, std::vector<student>& sorted_data, sort_type type);
+void bubble_sort_timer(std::vector<student> data, std::vector<student>& sorted_data, sort_type type);
 
-auto bucket_sort_timer(std::vector<student> data, sort_type type);
+void bucket_sort_timer(std::vector<student> data, sort_type type);
 
-auto counting_sort_timer(std::vector<student> data, sort_type type);
+void counting_sort_timer(std::vector<student> data, sort_type type);
