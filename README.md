@@ -5,11 +5,9 @@ Use of console UI seemed simple and within the scope set for the project.
 
 The chosen sort methods were:
 
-  Bubble Sort - chosen for its known poor performance.
-  
-  Bucket Sort - chosen because I wanted to see it used with strings.
-  
-  Merge Sort - for its general usefulness.
+  Bubble Sort
+  Bucket Sort
+  Selection Sort
   
 *Note: I would usually use std::sort for any sorting needs.
 
