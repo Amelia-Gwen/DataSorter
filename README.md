@@ -6,7 +6,9 @@ Use of console UI seemed simple and within the scope set for the project.
 The chosen sort methods were:
 
   Bubble Sort
+  
   Bucket Sort
+  
   Selection Sort
   
 *Note: I would usually use std::sort for any sorting needs.
