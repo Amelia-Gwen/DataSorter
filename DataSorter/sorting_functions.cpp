@@ -204,14 +204,23 @@ long long bucket_sort(std::vector<student> data, sort_type type)
 				}
 			}
 			std::sort(std::begin(a_c), std::end(a_c), sort_by_name);
+			std::cout << '*';
 			std::sort(std::begin(d_f), std::end(d_f), sort_by_name);
+			std::cout << '*';
 			std::sort(std::begin(g_i), std::end(g_i), sort_by_name);
+			std::cout << '*';
 			std::sort(std::begin(j_l), std::end(j_l), sort_by_name);
+			std::cout << '*';
 			std::sort(std::begin(m_o), std::end(m_o), sort_by_name);
+			std::cout << '*';
 			std::sort(std::begin(p_r), std::end(p_r), sort_by_name);
+			std::cout << '*';
 			std::sort(std::begin(s_t), std::end(s_t), sort_by_name);
+			std::cout << '*';
 			std::sort(std::begin(u_w), std::end(u_w), sort_by_name);
+			std::cout << '*';
 			std::sort(std::begin(x_z), std::end(x_z), sort_by_name);
+			std::cout << '*';
 
 			data.clear();
 			data.insert(data.end(), a_c.begin(), a_c.end());
@@ -223,6 +232,7 @@ long long bucket_sort(std::vector<student> data, sort_type type)
 			data.insert(data.end(), s_t.begin(), s_t.end());
 			data.insert(data.end(), u_w.begin(), u_w.end());
 			data.insert(data.end(), x_z.begin(), x_z.end());
+			std::cout << '*';
 		}
 		break;
 	case sort_type::id:
