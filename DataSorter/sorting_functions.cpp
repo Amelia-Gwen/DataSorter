@@ -225,6 +225,7 @@ long long bucket_sort(std::vector<student> data, sort_type type)
 			std::sort(std::begin(u_w), std::end(u_w), sort_by_name);
 			std::cout << '*';
 			std::sort(std::begin(x_z), std::end(x_z), sort_by_name);
+			std::cout << '*';
 
 			data.clear();
 			data.insert(data.end(), a_c.begin(), a_c.end());
