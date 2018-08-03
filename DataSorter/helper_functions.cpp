@@ -30,7 +30,7 @@ void save_data_to_memory(std::vector<student>& data, std::string file_name)
 		}
 	}
 
-	for (auto i = 0; i < raw_values.size(); i += 3)
+	for (std::size_t i = 0; i < raw_values.size(); i += 3)
 	{
 		name = raw_values[i];
 		id = std::stoi(raw_values[i+1]);
@@ -159,6 +159,7 @@ void post_sort_selection(const std::vector<student>& data, const std::vector<stu
 	case 's':
 	case 'S':
 		save_to_file(sorted_data);
+		sort_data(data);
 		break;
 	case 'r':
 	case 'R':
@@ -179,19 +180,16 @@ void save_to_file(const std::vector<student>& data)
 	
 	std::string file_name;
 	std::cin >> file_name;
-	std::ofstream file_writer{ file_name };
-	if (!file_writer)
+	std::ofstream write_file{ file_name };
+	if (!write_file)
 	{
 		std::cerr << "File could not be opened. Please try again.\n";
 		save_to_file(data);
 	}
 	
-	file_writer << "NAME,ID,SCORE\n";
+	write_file << "NAME,ID,SCORE\n";
 	for (auto&& student : data)
 	{
-		file_writer << student.name << ','
-			<< student.id << ','
-			<< student.score << '\n';
+		write_file << student.name << ',' << student.id << ',' << student.score << '\n';
 	}
-	sort_data(data);
 }
