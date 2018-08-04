@@ -460,7 +460,7 @@ long long selection_sort(std::vector<student> data, sort_type type)
 
 	if (type == sort_type::name)
 	{
-		while (first_unsorted < data.size())
+		while (first_unsorted < data.size() && !stopped)
 		{
 			std::size_t index = first_unsorted;
 			for (std::size_t i = first_unsorted; i < data.size(); ++i)
@@ -481,11 +481,20 @@ long long selection_sort(std::vector<student> data, sort_type type)
 				std::cout << '*';
 				count = 0;
 			}
+
+			if (_kbhit())
+			{
+				char key = _getch();
+				if (key == 'c' || key == 'C')
+				{
+					stopped = true;
+				}
+			}
 		}
 	}
 	else if (type == sort_type::id)
 	{
-		while (first_unsorted < data.size())
+		while (first_unsorted < data.size() && !stopped)
 		{
 			std::size_t index = first_unsorted;
 			for (std::size_t i = first_unsorted; i < data.size(); ++i)
@@ -506,11 +515,20 @@ long long selection_sort(std::vector<student> data, sort_type type)
 				std::cout << '*';
 				count = 0;
 			}
+
+			if (_kbhit())
+			{
+				char key = _getch();
+				if (key == 'c' || key == 'C')
+				{
+					stopped = true;
+				}
+			}
 		}
 	}
 	else
 	{
-		while (first_unsorted < data.size())
+		while (first_unsorted < data.size() && !stopped)
 		{
 			std::size_t index = first_unsorted;
 			for (std::size_t i = first_unsorted; i < data.size(); ++i)
@@ -530,6 +548,15 @@ long long selection_sort(std::vector<student> data, sort_type type)
 			{
 				std::cout << '*';
 				count = 0;
+			}
+
+			if (_kbhit())
+			{
+				char key = _getch();
+				if (key == 'c' || key == 'C')
+				{
+					stopped = true;
+				}
 			}
 		}
 	}
