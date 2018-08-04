@@ -91,9 +91,9 @@ void sort_three_ways(const std::vector<student>& data, std::vector<student>& sor
 
 void sort_by(const std::vector<student>& data, std::vector<student>& sorted_data, sort_type type)
 {
-	long long bubble_time = bubble_sort(data, type);
 	long long bucket_time = bucket_sort(data, sorted_data, type);
 	long long selection_time = selection_sort(data, type);
+	long long bubble_time = bubble_sort(data, type);
 
 	if (bubble_time > selection_time && bubble_time > bucket_time)
 	{
