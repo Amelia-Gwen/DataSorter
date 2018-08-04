@@ -13,7 +13,7 @@ bool sort_by_id(student lhs, student rhs) { return lhs.id > rhs.id; }
 
 bool sort_by_score(student lhs, student rhs) { return lhs.score > rhs.score; }
 
-long long bubble_sort(std::vector<student> data, std::vector<student>& sorted_data, sort_type type)
+long long bubble_sort(std::vector<student> data, sort_type type)
 {
 	std::cout << "Sorting with bubble sort. Press C to end sort.\n"
 		<< "----------|Finished\n";
@@ -117,15 +117,10 @@ long long bubble_sort(std::vector<student> data, std::vector<student>& sorted_da
 
 	auto end = std::chrono::steady_clock::now();
 	std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-	sorted_data.clear();
-	for (auto&& students : data)
-	{
-		sorted_data.emplace_back(student(students.name, students.id, students.score));
-	}
 	return time_passed.count();
 }
 
-long long bucket_sort(std::vector<student> data, sort_type type)
+long long bucket_sort(std::vector<student> data, std::vector<student>& sorted_data, sort_type type)
 {
 	std::cout << "Sorting with bucket sort. Press C to end sort.\n"
 		<< "----------|Finished\n";
@@ -444,6 +439,11 @@ long long bucket_sort(std::vector<student> data, sort_type type)
 
 	auto end = std::chrono::steady_clock::now();
 	std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+	sorted_data.clear();
+	for (auto&& students : data)
+	{
+		sorted_data.emplace_back(student(students.name, students.id, students.score));
+	}
 	return time_passed.count();
 }
 
@@ -491,6 +491,7 @@ long long selection_sort(std::vector<student> data, sort_type type)
 				}
 			}
 		}
+		std::cout << "*\n";
 	}
 	else if (type == sort_type::id)
 	{
@@ -525,6 +526,7 @@ long long selection_sort(std::vector<student> data, sort_type type)
 				}
 			}
 		}
+		std::cout << "*\n";
 	}
 	else
 	{
@@ -559,6 +561,7 @@ long long selection_sort(std::vector<student> data, sort_type type)
 				}
 			}
 		}
+		std::cout << "*\n";
 	}
 
 	auto end = std::chrono::steady_clock::now();
