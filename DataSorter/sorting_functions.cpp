@@ -142,7 +142,7 @@ long long bucket_sort(std::vector<student> data, std::vector<student>& sorted_da
 		std::vector<student> x_z;
 		if (!stopped)
 		{
-			for (auto&& student : data)
+			for (auto& student : data)
 			{
 				switch (student.name[0])
 				{
@@ -249,7 +249,7 @@ long long bucket_sort(std::vector<student> data, std::vector<student>& sorted_da
 		std::vector<student> nineties;
 		if (!stopped)
 		{
-			for (auto&& student : data)
+			for (auto& student : data)
 			{
 				if (student.id < 110)
 				{
@@ -349,7 +349,7 @@ long long bucket_sort(std::vector<student> data, std::vector<student>& sorted_da
 		std::vector<student> one_thousand;
 		if (!stopped)
 		{
-			for (auto&& student : data)
+			for (auto& student : data)
 			{
 				if (student.score <= 100)
 				{
@@ -440,7 +440,7 @@ long long bucket_sort(std::vector<student> data, std::vector<student>& sorted_da
 	auto end = std::chrono::steady_clock::now();
 	std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
 	sorted_data.clear();
-	for (auto&& students : data)
+	for (auto& students : data)
 	{
 		sorted_data.emplace_back(student(students.name, students.id, students.score));
 	}

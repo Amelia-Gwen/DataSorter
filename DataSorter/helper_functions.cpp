@@ -188,7 +188,7 @@ void save_to_file(const std::vector<student>& data)
 	}
 	
 	write_file << "NAME,ID,SCORE\n";
-	for (auto&& student : data)
+	for (auto& student : data)
 	{
 		write_file << student.name << ',' << student.id << ',' << student.score << '\n';
 	}
