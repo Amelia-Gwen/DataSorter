@@ -49,7 +49,7 @@ int main()
 	std::ofstream writer{ "sampledata.csv" };
     writer << "NAME,ID,SCORE\n";
 
-	for (auto&& student : students)
+	for (auto& student : students)
 	{
 		writer << student.name << ',' << student.id << ',' << student.score << '\n';
 	}
