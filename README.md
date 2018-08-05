@@ -22,3 +22,7 @@ Very few programs would require sorting the same unsorted data so many times and
 the use of \_kbhit() and \_getch() for non-blocking IO is non-portable but the project was explicitly intended to be on the Windows platform. Multithreading would have been a better, more portable solution but is non-trivial.
 
 It should be noted that I did testing during the development process by writing to the console with std::cout. I did not save the tests or the results. That was an oversight. They can be recreated on request.
+
+The script I used to generate the data is also provided as well.
+
+I will also note that I was canceling out of the bubble sort every time when using it with the large data set. I chose bubble sort because I wanted the opportunity to see just how slow it really is and this was an eye opening experience.
