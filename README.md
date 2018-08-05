@@ -13,7 +13,7 @@ The chosen sort methods were:
   
 *Note: I would usually use std::sort for any sorting needs.
 
-I considered an OOP approach to the problem as I am more familiar with that. What I did is more of a mix of procedural and dynamic styles. Procedural may have been a better approach considering the scope of the problem but I don't think so. The major drawback to the current approach is that it is not very scalable.
+I considered an OOP approach to the problem as I am more familiar with that. What I did is more of a mix of procedural and dynamic styles. The major drawback to the current approach is that it is not very scalable.
 
 The sorting functions need reworked. As they are they do to much work. If I were to actually want to use them I would rewrite them to have an interface similar to std::sort. I would take iterators as a parameter as well as an overloaded function call taking a function pointer that the user can pass as a comparator for user defined types. This is non-trivial and therefor outside the scope of this project.
 
