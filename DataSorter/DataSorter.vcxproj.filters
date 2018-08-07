@@ -24,12 +24,18 @@
     <ClCompile Include="sorting_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="timing_function.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helper_functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sorting_functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="timing_function.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

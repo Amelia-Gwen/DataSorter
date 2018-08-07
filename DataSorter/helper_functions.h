@@ -1,4 +1,5 @@
-#pragma once
+#ifndef BRUGLESCO_DATASORTER_HELP_FUNCTIONS_H
+#define BRUGLESCO_DATASORTER_HELP_FUNCTIONS_H
 
 #include <fstream>
 #include <string>
@@ -35,3 +36,6 @@ void save_or_sort_again(const std::vector<student>& data, const std::vector<stud
 void post_sort_selection(const std::vector<student>& data, const std::vector<student>& sorted_data, char choice);
 
 void save_to_file(const std::vector<student>& data);
+
+
+#endif // !BRUGLESCO_DATASORTER_HELP_FUNCTIONS_H
