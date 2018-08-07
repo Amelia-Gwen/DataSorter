@@ -3,16 +3,19 @@
 
 #include <chrono>
 
-template <typename T, typename... Args>
-inline long long timing_function(T timed_function, Args args...)
-{
-	auto start = std::chrono::steady_clock::now();
+namespace bruglesco {
 
-	timed_function(args...);
+	template <typename Func, typename... Args>
+	inline long long timing_function(Func timed_function, Args args...)
+	{
+		auto start = std::chrono::steady_clock::now();
 
-	auto end = std::chrono::steady_clock::now();
-	std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-	return time_passed.count();
-};
+		timed_function(args...);
 
+		auto end = std::chrono::steady_clock::now();
+		std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
+		return time_passed.count();
+	};
+
+}
 #endif // !BRUGLESCO_DATASORTER_TIMING_FUNCTION_H
