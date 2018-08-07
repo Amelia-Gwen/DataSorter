@@ -2,6 +2,7 @@
 #define BRUGLESCO_DATASORTER_TIMING_FUNCTION_H
 
 #include <chrono>
+#include <functional>
 
 template <typename T, typename... Args>
 inline long long timing_function(T timed_function, Args args...)

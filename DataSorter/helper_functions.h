@@ -14,6 +14,13 @@ struct student
 	student(std::string name, unsigned id, unsigned score) : name{ name }, id{ id }, score{ score } {}
 };
 
+enum class sort_type
+{
+	name,
+	id,
+	score
+};
+
 void save_data_to_memory(std::vector<student>& data, std::string file_name);
 
 void check_file(std::ifstream& source_file);

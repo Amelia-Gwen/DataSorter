@@ -8,12 +8,6 @@
 
 #include "helper_functions.h"
 
-bool sort_by_name(student lhs, student rhs) { return lhs.name > rhs.name; }
-
-bool sort_by_id(student lhs, student rhs) { return lhs.id > rhs.id; }
-
-bool sort_by_score(student lhs, student rhs) { return lhs.score > rhs.score; }
-
 void save_data_to_memory(std::vector<student>& data, std::string file_name)
 {
 	std::ifstream source_file{ file_name };
@@ -80,15 +74,15 @@ void sort_three_ways(const std::vector<student>& data, std::vector<student>& sor
 	{
 	case 'n':
 	case 'N':
-		sort_by(data, sorted_data, sort_by_name);
+		sort_by(data, sorted_data, sort_type::name);
 		break;
 	case 'i':
 	case 'I':
-		sort_by(data, sorted_data, sort_by_id);
+		sort_by(data, sorted_data, sort_type::id);
 		break;
 	case 's':
 	case 'S':
-		sort_by(data, sorted_data, sort_by_score);
+		sort_by(data, sorted_data, sort_type::score);
 		break;
 	default:
 		std::cerr << "Invalid selection. Please try again.\n";
@@ -97,13 +91,11 @@ void sort_three_ways(const std::vector<student>& data, std::vector<student>& sor
 	}
 }
 
-void sort_by(const std::vector<student>& data, std::vector<student>& sorted_data, bool (*func)(std::vector<student>, std::vector<student>))
+void sort_by(const std::vector<student>& data, std::vector<student>& sorted_data, sort_type type)
 {
-
-
-	long long bubble_time = timing_function(bubble_sort, data.begin(), data.end(), func);
-	long long bucket_time = timing_function(bucket_sort, data.begin(), data.end(), func);
-	long long selection_time =  timing_function(selection_sort, data.begin(), data.end(), func);
+	long long bucket_time = timing_function(bucket_sort, data, sorted_data, type);
+	long long selection_time =  timing_function(selection_sort, data, type);
+	long long bubble_time = timing_function(bubble_sort, data, type);
 
 	if (bubble_time > selection_time && bubble_time > bucket_time)
 	{

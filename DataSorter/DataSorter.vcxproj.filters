@@ -21,7 +21,7 @@
     <ClCompile Include="helper_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sorting_function.cpp">
+    <ClCompile Include="sorting_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,13 +29,10 @@
     <ClInclude Include="helper_functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="timing_function.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="sorting_function.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="sorting_functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="timing_function.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

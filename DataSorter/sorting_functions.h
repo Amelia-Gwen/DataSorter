@@ -1,111 +1,14 @@
 #ifndef BRUGLESCO_DATASORTER_SORTING_FUNCTIONS_H
 #define BRUGLESCO_DATASORTER_SORTING_FUNCTIONS_H
 
-#include <iostream>
 #include <vector>
 
-template <typename T, typename T>
-	bool default_comparison(T lhs, T rhs) { return lhs > rhs; }
+#include "helper_functions.h"
 
-template <typename Iterator, typename Func>
-inline void bubble_sort(Iterator begin, Iterator end, Func = default_comparison)
-{
-	std::cout << "Sorting with bubble sort. Press C to end sort.\n"
-		<< "----------|Finished\n";
+void bubble_sort(std::vector<student> data, sort_type type);
 
-	std::size_t last_unsorted{ data.size() - 1 };
-	std::size_t count = 0;
-	bool stopped{ false };
+void bucket_sort(std::vector<student> data, std::vector<student>& sorted_data, sort_type type);
 
-	while (!stopped && last_unsorted > 0)
-	{
-		for (;begin != end; ++begin)
-		{
-			auto temp = begin++;
-			
-			if (Func(*temp, *begin))
-			{
-				std::swap(*temp, *begin);
-			}
-
-			if (_kbhit())
-			{
-				auto key = _getch();
-				if (key == 'c' || key == 'C')
-				{
-					stopped = true;
-				}
-			}
-			if (stopped)
-			{
-				break;
-			}
-		}
-		--last_unsorted;
-		++count;
-		if (count > data.size() / 10)
-		{
-			std::cout << '*';
-			count = 0;
-		}
-	}
-	std::cout << "*\n";
-};
-
-template <typename Iterator, typename Func>
-inline void bucket_sort(Iterator begin, Iterator end, Func = 0)
-{
-	std::cout << "Sorting with bucket sort. Press C to end sort.\n"
-		<< "----------|Finished\n";
-
-	bool stopped{ false };
-
-
-};
-
-template <typename Iterator, typename Func>
-inline void selection_sort(Iterator begin, Iterator end, Func = 0)
-{
-	std::cout << "Sorting with selection sort. Press C to end sort.\n"
-		<< "----------|Finished\n";
-
-	bool stopped{ false };
-	std::size_t first_unsorted = 0;
-	std::size_t last_unsorted = 0;
-	std::size_t count = 0;
-
-	while (first_unsorted < data.size() && !stopped)
-	{
-		std::size_t index = first_unsorted;
-		for (std::size_t i = first_unsorted; i < data.size(); ++i)
-		{
-			if (data[i].name < data[index].name)
-			{
-				index = i;
-			}
-		}
-		if (index != first_unsorted)
-		{
-			std::swap(data[first_unsorted], data[index]);
-		}
-		++first_unsorted;
-		++count;
-		if (count > data.size() / 10)
-		{
-			std::cout << '*';
-			count = 0;
-		}
-
-		if (_kbhit())
-		{
-			char key = _getch();
-			if (key == 'c' || key == 'C')
-			{
-				stopped = true;
-			}
-		}
-	}
-	std::cout << "*\n";
-};
+void selection_sort(std::vector<student> data, sort_type type);
 
 #endif // !BRUGLESCO_DATASORTER_SORTING_FUNCTIONS_H
