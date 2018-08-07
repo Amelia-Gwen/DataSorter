@@ -13,7 +13,7 @@ bool sort_by_id(student lhs, student rhs) { return lhs.id > rhs.id; }
 
 bool sort_by_score(student lhs, student rhs) { return lhs.score > rhs.score; }
 
-long long bubble_sort(std::vector<student> data, sort_type type)
+void bubble_sort(std::vector<student> data, sort_type type)
 {
 	std::cout << "Sorting with bubble sort. Press C to end sort.\n"
 		<< "----------|Finished\n";
@@ -21,8 +21,6 @@ long long bubble_sort(std::vector<student> data, sort_type type)
 	std::size_t last_unsorted{ data.size() - 1 };
 	std::size_t count = 0;
 	bool stopped{ false };
-
-	auto start = std::chrono::steady_clock::now();
 
 	if (type == sort_type::name)
 	{
@@ -115,19 +113,15 @@ long long bubble_sort(std::vector<student> data, sort_type type)
 		std::cout << "*\n";
     }
 
-	auto end = std::chrono::steady_clock::now();
-	std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-	return time_passed.count();
+	
 }
 
-long long bucket_sort(std::vector<student> data, std::vector<student>& sorted_data, sort_type type)
+void bucket_sort(std::vector<student> data, std::vector<student>& sorted_data, sort_type type)
 {
 	std::cout << "Sorting with bucket sort. Press C to end sort.\n"
 		<< "----------|Finished\n";
 	
 	bool stopped{ false };
-
-	auto start = std::chrono::steady_clock::now();
 	
 	if (type == sort_type::name)
 	{
@@ -436,18 +430,9 @@ long long bucket_sort(std::vector<student> data, std::vector<student>& sorted_da
 			std::cout << "*\n";
 		}
 	}
-
-	auto end = std::chrono::steady_clock::now();
-	std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-	sorted_data.clear();
-	for (auto& students : data)
-	{
-		sorted_data.emplace_back(student(students.name, students.id, students.score));
-	}
-	return time_passed.count();
 }
 
-long long selection_sort(std::vector<student> data, sort_type type)
+void selection_sort(std::vector<student> data, sort_type type)
 {
 	std::cout << "Sorting with selection sort. Press C to end sort.\n"
 		<< "----------|Finished\n";
@@ -455,8 +440,6 @@ long long selection_sort(std::vector<student> data, sort_type type)
 	bool stopped{ false };
 	std::size_t first_unsorted = 0;
 	std::size_t count = 0;
-
-	auto start = std::chrono::steady_clock::now();
 
 	if (type == sort_type::name)
 	{
@@ -563,8 +546,4 @@ long long selection_sort(std::vector<student> data, sort_type type)
 		}
 		std::cout << "*\n";
 	}
-
-	auto end = std::chrono::steady_clock::now();
-	std::chrono::milliseconds time_passed = std::chrono::duration_cast<std::chrono::milliseconds>(end - start);
-	return time_passed.count();
 }
