@@ -155,10 +155,11 @@
   <ItemGroup>
     <ClCompile Include="DataSorter.cpp" />
     <ClCompile Include="helper_functions.cpp" />
-    <ClCompile Include="sorting_functions.cpp" />
+    <ClCompile Include="sorting_function.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="helper_functions.h" />
+    <ClInclude Include="sorting_function.h" />
     <ClInclude Include="sorting_functions.h" />
     <ClInclude Include="timing_function.h" />
   </ItemGroup>
