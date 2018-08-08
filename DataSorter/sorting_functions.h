@@ -50,10 +50,10 @@ namespace bruglesco {
 			}
 		}
 		std::cout << "*\n";
-	};
+	}
 
 	template <typename Iterator, typename Func>
-	inline void bucket_sort(Iterator begin, Iterator end, Func = 0)
+	inline void bucket_sort(Iterator begin, Iterator end, Func func = default_comparison)
 	{
 		std::cout << "Sorting with bucket sort. Press C to end sort.\n"
 			<< "----------|Finished\n";
@@ -61,10 +61,10 @@ namespace bruglesco {
 		bool stopped{ false };
 
 
-	};
+	}
 
 	template <typename Iterator, typename Func>
-	inline void selection_sort(Iterator begin, Iterator end, Func = 0)
+	inline void selection_sort(Iterator begin, Iterator end, Func func = default_comparison)
 	{
 		std::cout << "Sorting with selection sort. Press C to end sort.\n"
 			<< "----------|Finished\n";
@@ -74,7 +74,7 @@ namespace bruglesco {
 		std::size_t last_unsorted = 0;
 		std::size_t count = 0;
 
-		while (first_unsorted < data.size() && !stopped)
+		while (!stopped)
 		{
 			std::size_t index = first_unsorted;
 			for (std::size_t i = first_unsorted; i < data.size(); ++i)
@@ -89,6 +89,7 @@ namespace bruglesco {
 				std::swap(data[first_unsorted], data[index]);
 			}
 			++first_unsorted;
+
 			++count;
 			if (count > data.size() / 10)
 			{
@@ -98,7 +99,7 @@ namespace bruglesco {
 
 			if (_kbhit())
 			{
-				char key = _getch();
+				auto key = _getch();
 				if (key == 'c' || key == 'C')
 				{
 					stopped = true;
@@ -106,7 +107,7 @@ namespace bruglesco {
 			}
 		}
 		std::cout << "*\n";
-	};
+	}
 
 }
 #endif // !BRUGLESCO_DATASORTER_SORTING_FUNCTIONS_H

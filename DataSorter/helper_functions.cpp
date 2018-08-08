@@ -101,11 +101,19 @@ namespace bruglesco {
 
 	void sort_by(const std::vector<student>& data, std::vector<student>& sorted_data, bool(*func)(student, student))
 	{
+		timer timer;
 
+		timer.start();
+		bubble_sort(data.begin(), data.end(), func);
+		long long bubble_time = timer.stop();
 
-		long long bubble_time = timing_function(bubble_sort, data.begin(), data.end(), func);
-		long long bucket_time = timing_function(bucket_sort, data.begin(), data.end(), func);
-		long long selection_time =  timing_function(selection_sort, data.begin(), data.end(), func);
+		timer.start();
+		bucket_sort(data.begin(), data.end(), func);
+		long long bucket_time = timer.stop();
+
+		timer.start();
+		selection_sort(data.begin(), data.end(), func);
+		long long selection_time = timer.stop();
 
 		if (bubble_time > selection_time && bubble_time > bucket_time)
 		{

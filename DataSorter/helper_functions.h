@@ -24,7 +24,7 @@ namespace bruglesco {
 
 	void sort_three_ways(const std::vector<student>& data, std::vector<student>& sorted_data, char choice);
 
-	void sort_by(const std::vector<student>& data, std::vector<student>& sorted_data, sort_type type);
+	void sort_by(const std::vector<student>& data, std::vector<student>& sorted_data, bool(*func)(student, student));
 
 	void save_or_sort_again(const std::vector<student>& data, const std::vector<student>& sorted_data);
 
