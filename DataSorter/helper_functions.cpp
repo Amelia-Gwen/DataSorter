@@ -115,6 +115,9 @@ namespace bruglesco {
 		selection_sort(data.begin(), data.end(), func);
 		long long selection_time = timer.stop();
 
+
+
+		// rewrite this dynamically
 		if (bubble_time > selection_time && bubble_time > bucket_time)
 		{
 			if (selection_time < bucket_time)
