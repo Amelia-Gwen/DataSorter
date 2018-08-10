@@ -6,7 +6,7 @@
 
 namespace bruglesco {
 
-	template <typename T, typename T>
+	template <typename T>
 	bool default_comparison(T lhs, T rhs) { return lhs > rhs; }
 
 	template <typename Iterator, typename Func>
@@ -116,7 +116,6 @@ namespace bruglesco {
 				}
 			}
 		}
-
 
 		std::cout << "*\n";
 	}
