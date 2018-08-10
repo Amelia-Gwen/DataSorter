@@ -1,8 +1,9 @@
 #ifndef BRUGLESCO_DATASORTER_SORTING_FUNCTIONS_H
 #define BRUGLESCO_DATASORTER_SORTING_FUNCTIONS_H
 
+#include <cstddef>
 #include <iostream>
-#include <vector>
+
 namespace bruglesco {
 
 	template <typename T, typename T>
@@ -59,8 +60,6 @@ namespace bruglesco {
 			<< "----------|Finished\n";
 
 		bool stopped{ false };
-
-
 	}
 
 	template <typename Iterator, typename Func>
@@ -72,28 +71,34 @@ namespace bruglesco {
 		bool stopped{ false };
 		std::size_t count = 0;
 
-		auto smallest = begin;
-		auto largest = begin;
-
 		while (!stopped && begin != end)
 		{
-			auto temp = begin;
-			for (; temp != end; ++temp)
+			auto smallest = begin;
+			auto largest = begin;
+			for (auto temp = begin; temp != end; ++temp)
 			{
-
-			}
-			for (std::size_t i = first_unsorted; i < data.size(); ++i)
-			{
-				if (data[i].name < data[index].name)
+				if (func(*temp, *smallest))
 				{
-					index = i;
+					smallest = temp;
+				}
+				if (func(*largest, *temp))
+				{
+					largest = temp;
 				}
 			}
-			if (index != first_unsorted)
+			if (smallest != begin)
 			{
-				std::swap(data[first_unsorted], data[index]);
+				std::swap(*smallest, *begin)
 			}
-			++first_unsorted;
+			if (largest != --end)
+			{
+				std::swap(*largest, *end)
+			}
+			if (begin == end)
+			{
+				stopped = true;
+			}
+			++begin
 
 			count += 2;
 			if (count > data.size() / 10)
