@@ -19,8 +19,7 @@ namespace bruglesco {
 
 		while (!stopped && begin != end)
 		{
-			auto temp_rhs = begin;
-			for (; temp_rhs != end; ++temp_rhs)
+			for (auto temp_rhs = begin; temp_rhs != end; ++temp_rhs)
 			{
 				auto temp_lhs = temp_rhs++;
 				if (temp_lhs != end && func(*temp_lhs, *temp_rhs))
@@ -41,6 +40,7 @@ namespace bruglesco {
 					break;
 				}
 			}
+			--end;
 
 			++count;
 			if (count > data.size() / 10)
@@ -49,12 +49,11 @@ namespace bruglesco {
 				count = 0;
 			}
 		}
-		--end;
 		std::cout << "*\n";
 	}
 
 	template <typename Iterator, typename Func>
-	inline void bucket_sort(Iterator begin, Iterator end, Func func = default_comparison)
+	inline void merge_sort(Iterator begin, Iterator end, Func func = default_comparison)
 	{
 		std::cout << "Sorting with bucket sort. Press C to end sort.\n"
 			<< "----------|Finished\n";
@@ -76,7 +75,7 @@ namespace bruglesco {
 		auto smallest = begin;
 		auto largest = begin;
 
-		while (!stopped)
+		while (!stopped && begin != end)
 		{
 			auto temp = begin;
 			for (; temp != end; ++temp)
@@ -112,6 +111,8 @@ namespace bruglesco {
 				}
 			}
 		}
+
+
 		std::cout << "*\n";
 	}
 
