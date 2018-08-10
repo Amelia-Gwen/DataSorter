@@ -14,18 +14,18 @@ namespace bruglesco {
 		std::cout << "Sorting with bubble sort. Press C to end sort.\n"
 			<< "----------|Finished\n";
 
-		std::size_t last_unsorted{ data.size() - 1 };
-		std::size_t count = 0;
 		bool stopped{ false };
+		std::size_t count = 0;
 
-		while (!stopped && last_unsorted > 0)
+		while (!stopped && begin != end)
 		{
-			for (; begin != end; ++begin)
+			auto temp_rhs = begin;
+			for (; temp_rhs != end; ++temp_rhs)
 			{
-				auto temp = begin++;
-				if (begin != end && func(*temp, *begin))
+				auto temp_lhs = temp_rhs++;
+				if (temp_lhs != end && func(*temp_lhs, *temp_rhs))
 				{
-					std::swap(*temp, *begin);
+					std::swap(*temp_lhs, *temp_rhs);
 				}
 
 				if (_kbhit())
@@ -41,7 +41,7 @@ namespace bruglesco {
 					break;
 				}
 			}
-			--last_unsorted;
+
 			++count;
 			if (count > data.size() / 10)
 			{
@@ -49,6 +49,7 @@ namespace bruglesco {
 				count = 0;
 			}
 		}
+		--end;
 		std::cout << "*\n";
 	}
 
@@ -70,13 +71,18 @@ namespace bruglesco {
 			<< "----------|Finished\n";
 
 		bool stopped{ false };
-		std::size_t first_unsorted = 0;
-		std::size_t last_unsorted = 0;
 		std::size_t count = 0;
+
+		auto smallest = begin;
+		auto largest = begin;
 
 		while (!stopped)
 		{
-			std::size_t index = first_unsorted;
+			auto temp = begin;
+			for (; temp != end; ++temp)
+			{
+
+			}
 			for (std::size_t i = first_unsorted; i < data.size(); ++i)
 			{
 				if (data[i].name < data[index].name)
@@ -90,7 +96,7 @@ namespace bruglesco {
 			}
 			++first_unsorted;
 
-			++count;
+			count += 2;
 			if (count > data.size() / 10)
 			{
 				std::cout << '*';
