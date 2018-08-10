@@ -108,8 +108,8 @@ namespace bruglesco {
 		long long bubble_time = timer.stop();
 
 		timer.start();
-		bucket_sort(data.begin(), data.end(), func);
-		long long bucket_time = timer.stop();
+		merge_sort(data.begin(), data.end(), func);
+		long long merge_time = timer.stop();
 
 		timer.start();
 		selection_sort(data.begin(), data.end(), func);
@@ -118,17 +118,17 @@ namespace bruglesco {
 
 
 		// rewrite this dynamically
-		if (bubble_time > selection_time && bubble_time > bucket_time)
+		if (bubble_time > selection_time && bubble_time > merge_time)
 		{
-			if (selection_time < bucket_time)
+			if (selection_time < merge_time)
 			{
 				std::cout << "selection " << selection_time << "ms.\n"
-					<< "bucket " << bucket_time << "ms.\n"
+					<< "merge " << merge_time << "ms.\n"
 					<< "bubble " << bubble_time << "ms.\n";
 			}
 			else
 			{
-				std::cout << "bucket " << bucket_time << "ms.\n"
+				std::cout << "merge " << merge_time << "ms.\n"
 					<< "selection " << selection_time << "ms.\n"
 					<< "bubble " << bubble_time << "ms.\n";
 			}
@@ -139,26 +139,26 @@ namespace bruglesco {
 			{
 				std::cout << "selection " << selection_time << "ms.\n"
 					<< "bubble " << bubble_time << "ms.\n"
-					<< "bucket " << bucket_time << "ms.\n";
+					<< "merge " << merge_time << "ms.\n";
 			}
-			else if (bucket_time < bubble_time)
+			else if (merge_time < bubble_time)
 			{
-				std::cout << "bucket " << bucket_time << "ms.\n"
+				std::cout << "merge " << merge_time << "ms.\n"
 					<< "bubble " << bubble_time << "ms.\n"
 					<< "selection " << selection_time << "ms.\n";
 			}
 			else
 			{
-				if (selection_time < bucket_time)
+				if (selection_time < merge_time)
 				{
 					std::cout << "bubble " << bubble_time << "ms.\n"
 						<< "selection " << selection_time << "ms.\n"
-						<< "bucket " << bucket_time << "ms.\n";
+						<< "merge " << merge_time << "ms.\n";
 				}
 				else
 				{
 					std::cout << "bubble " << bubble_time << "ms.\n"
-						<< "bucket " << bucket_time << "ms.\n"
+						<< "merge " << merge_time << "ms.\n"
 						<< "selection " << selection_time << "ms.\n";
 				}
 			}

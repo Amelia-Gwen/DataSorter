@@ -56,7 +56,7 @@ namespace bruglesco {
 	template <typename Iterator, typename Func>
 	inline void merge_sort(Iterator begin, Iterator end, Func func = default_comparison)
 	{
-		std::cout << "Sorting with bucket sort. Press C to end sort.\n"
+		std::cout << "Sorting with merge sort. Press C to end sort.\n"
 			<< "----------|Finished\n";
 
 		bool stopped{ false };
