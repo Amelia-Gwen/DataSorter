@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <iostream>
+#include <utility>
 
 namespace bruglesco {
 
@@ -60,6 +61,65 @@ namespace bruglesco {
 			<< "----------|Finished\n";
 
 		bool stopped{ false };
+
+		std::size_t sub_size = 1;
+		std::size_t size = 0;
+
+		do
+		{
+			auto it_lhs = begin;
+			auto it_rhs = begin;
+			std::size_t left_count = sub_size;
+			std::size_t right_count = sub_size;
+
+			for (auto i = 0; i < sub_size; ++i)
+			{
+				++it_rhs;
+				if (sub_size == 1)
+				{
+					++size;
+				}
+			}
+
+			while (left_count > 0 && right_count > 0)
+			{
+				if (it_rhs == end || *it_lhs <= *it_rhs)
+				{
+					--left_count;
+					++it_lhs;
+				}
+				else
+				{
+					std::swap(*it_lhs, *it_rhs);
+					--right_count;
+					++it_rhs;
+					if (sub_size == 1)
+					{
+						++size;
+					}
+				}
+			}
+
+			for (auto i = 0; i < left_count; ++i)
+			{
+				++it_lhs;
+			}
+			for (auto i = 0; i < right_count; ++i)
+			{
+				if (it_rhs == end)
+				{
+					break;
+				}
+				++it_rhs;
+				if (sub_size == 1)
+				{
+					++size;
+				}
+			}
+
+			sub_size *= 2;
+		}
+		while (!stopped && sub_size < size);
 	}
 
 	template <typename Iterator, typename Func>
