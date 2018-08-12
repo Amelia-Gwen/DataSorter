@@ -83,7 +83,7 @@ namespace bruglesco {
 
 			while (left_count > 0 && right_count > 0)
 			{
-				if (it_rhs == end || *it_lhs <= *it_rhs)
+				if (it_rhs == end || func(*it_lhs, *it_rhs))
 				{
 					--left_count;
 					++it_lhs;
