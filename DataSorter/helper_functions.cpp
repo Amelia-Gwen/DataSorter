@@ -16,51 +16,8 @@ namespace bruglesco {
 
 	bool sort_by_score(student lhs, student rhs) { return lhs.score > rhs.score; }
 
-	void save_data_to_memory(std::vector<student>& data, std::string file_name)
-	{
-		std::ifstream source_file{ file_name };
-		check_file(source_file);
-		std::string row;
-		std::string name;
-		unsigned id;
-		unsigned score;
-		std::vector<std::string> raw_values;
-
-		// the first row of a csv file are the column types and must be discarded
-		source_file >> row;
-
-		while (std::getline(source_file, row))
-		{
-			std::istringstream lineparse(row);
-			std::string cell;
-
-			while (std::getline(lineparse, cell, ','))
-			{
-				raw_values.push_back(cell);
-			}
-		}
-
-		for (std::size_t i = 0; i < raw_values.size(); i += 3)
-		{
-			name = raw_values[i];
-			id = std::stoi(raw_values[i + 1]);
-			score = std::stoi(raw_values[i + 2]);
-
-			data.emplace_back(student(name, id, score));
-		}
-	}
-
-	void check_file(std::ifstream& source_file)
-	{
-		if (!source_file)
-		{
-			std::cerr << "Failure to load file. Please re-enter file name.\n";
-			std::string file_name;
-			std::cin >> file_name;
-			source_file.open(file_name);
-			check_file(source_file);
-		}
-	}
+	
+	
 
 	void sort_data(const std::vector<student>& data)
 	{
@@ -195,26 +152,5 @@ namespace bruglesco {
 		}
 	}
 
-	void save_to_file(const std::vector<student>& data)
-	{
-		std::cout << "Please provide a name for your file.\n"
-			<< "Note: Data will be saved to current path.\n"
-			<< "If file name exists it will be overwritten.\n";
-
-		std::string file_name;
-		std::cin >> file_name;
-		std::ofstream write_file{ file_name };
-		if (!write_file)
-		{
-			std::cerr << "File could not be opened. Please try again.\n";
-			save_to_file(data);
-		}
-
-		write_file << "NAME,ID,SCORE\n";
-		for (auto& student : data)
-		{
-			write_file << student.name << ',' << student.id << ',' << student.score << '\n';
-		}
-	}
 
 }
