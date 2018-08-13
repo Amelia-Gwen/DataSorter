@@ -54,6 +54,7 @@ namespace bruglesco {
 		std::cout << "*\n";
 	}
 
+	// slightly bugged need to move value when rhs > lhs not swap.
 	template <typename Iterator, typename Func>
 	inline void merge_sort(Iterator begin, Iterator end, Func func = default_comparison)
 	{
