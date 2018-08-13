@@ -16,7 +16,5 @@ namespace bruglesco {
 	void save_or_sort_again(const std::vector<student>& data, const std::vector<student>& sorted_data);
 
 	void post_sort_selection(const std::vector<student>& data, const std::vector<student>& sorted_data, char choice);
-
-
 }
 #endif // !BRUGLESCO_DATASORTER_HELP_FUNCTIONS_H

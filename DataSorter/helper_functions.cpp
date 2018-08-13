@@ -10,15 +10,6 @@
 
 namespace bruglesco {
 
-	bool sort_by_name(student lhs, student rhs) { return lhs.name > rhs.name; }
-
-	bool sort_by_id(student lhs, student rhs) { return lhs.id > rhs.id; }
-
-	bool sort_by_score(student lhs, student rhs) { return lhs.score > rhs.score; }
-
-	
-	
-
 	void sort_data(const std::vector<student>& data)
 	{
 		std::cout << "Please select criteria to sort by.\n"
@@ -151,6 +142,4 @@ namespace bruglesco {
 			break;
 		}
 	}
-
-
 }
