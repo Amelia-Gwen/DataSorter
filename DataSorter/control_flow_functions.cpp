@@ -1,6 +1,8 @@
 #include <algorithm>
+#include <functional>
 #include <iomanip>
 #include <iostream>
+#include <map>
 
 #include "sorting_functions.h"
 #include "timing_function.h"
@@ -84,7 +86,21 @@ void bruglesco::sort_by(const std::vector<student>& data, std::vector<student>& 
 
 	sorted_data = merge_data;
 
-	// display times
+	std::map<long long, std::function<void(long long)>> sorted_times;
+	sorted_times.insert(std::pair<long long, std::function<void(long long)>>(bubble_time, display_bubble));
+	sorted_times.insert(std::pair<long long, std::function<void(long long)>>(merge_time, display_merge));
+	sorted_times.insert(std::pair<long long, std::function<void(long long)>>(selection_time, display_selection));
+	sorted_times.insert(std::pair<long long, std::function<void(long long)>>(std_time, display_std));
+
+	display_times(sorted_times);
+}
+
+void bruglesco::display_times(std::map<long long, std::function<void(long long)>> times)
+{
+	for (auto& time : times)
+	{
+		time.second(time.first);
+	}
 }
 
 void bruglesco::save_or_sort_again(const std::vector<student>& data, std::vector<student>& sorted_data)
