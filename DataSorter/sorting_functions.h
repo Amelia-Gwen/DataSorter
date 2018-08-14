@@ -78,7 +78,7 @@ namespace bruglesco {
 			std::size_t left_count = sub_size;
 			std::size_t right_count = sub_size;
 
-			for (auto i = 0; i < sub_size; ++i)
+			for (std::size_t i = 0; i < sub_size; ++i)
 			{
 				++it_rhs;
 				if (sub_size == 1)
@@ -106,11 +106,11 @@ namespace bruglesco {
 				}
 			}
 
-			for (auto i = 0; i < left_count; ++i)
+			for (std::size_t i = 0; i < left_count; ++i)
 			{
 				++it_lhs;
 			}
-			for (auto i = 0; i < right_count; ++i)
+			for (std::size_t i = 0; i < right_count; ++i)
 			{
 				if (it_rhs == end)
 				{

@@ -23,18 +23,18 @@ void bruglesco::run_program(std::string file_name)
 	std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-void bruglesco::sort_data(const std::vector<student>& data, std::vector<student>& sorted_data)
+void bruglesco::sort_data(std::vector<student>& data, std::vector<student>& sorted_data)
 {
 	std::cout << "Please select criteria to sort by.\n"
-		<< "N for Name.\n"
-		<< "I for Student ID.\n"
-		<< "S for Score.\n";
+		"N for Name.\n"
+	    "I for Student ID.\n"
+		"S for Score.\n";
 	char choice;
 	std::cin >> choice;
 	sort_three_ways(data, sorted_data, choice);
 }
 
-void bruglesco::sort_three_ways(const std::vector<student>& data, std::vector<student>& sorted_data, char choice)
+void bruglesco::sort_three_ways(std::vector<student>& data, std::vector<student>& sorted_data, char choice)
 {
 	switch (choice)
 	{
@@ -57,7 +57,7 @@ void bruglesco::sort_three_ways(const std::vector<student>& data, std::vector<st
 	}
 }
 
-void bruglesco::sort_by(const std::vector<student>& data, std::vector<student>& sorted_data, bool(*func)(student, student))
+void bruglesco::sort_by(std::vector<student>& data, std::vector<student>& sorted_data, bool(*func)(student, student))
 {
 	timer timer;
 
@@ -101,17 +101,17 @@ void bruglesco::display_times(std::map<long long, std::function<void(long long)>
 	}
 }
 
-void bruglesco::save_or_sort_again(const std::vector<student>& data, std::vector<student>& sorted_data)
+void bruglesco::save_or_sort_again(std::vector<student>& data, std::vector<student>& sorted_data)
 {
 	std::cout << "Would you like to save the sorted data or sort again?\n"
-		<< "S for Save.\n"
-		<< "R for Retry sorting.\n";
+	    "S for Save.\n"
+		"R for Retry sorting.\n";
 	char choice;
 	std::cin >> choice;
 	post_sort_selection(data, sorted_data, choice);
 }
 
-void bruglesco::post_sort_selection(const std::vector<student>& data, std::vector<student>& sorted_data, char choice)
+void bruglesco::post_sort_selection(std::vector<student>& data, std::vector<student>& sorted_data, char choice)
 {
 	switch (choice)
 	{
