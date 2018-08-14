@@ -11,10 +11,10 @@ void bruglesco::run_program(std::string file_name)
 {
 	std::vector<student> data;
 	data.reserve(100000);
-	std::vector<student> sorted_data;
-	sorted_data.reserve(100000);
 
 	stream_source_to_local(data, file_name);
+
+	std::vector<student> sorted_data{data};
 
 	sort_data(data, sorted_data);
 
@@ -60,29 +60,26 @@ void bruglesco::sort_three_ways(std::vector<student>& data, std::vector<student>
 void bruglesco::sort_by(std::vector<student>& data, std::vector<student>& sorted_data, bool(*func)(student, student))
 {
 	timer timer;
-
-	auto bubble_data = data;
-	auto merge_data = data;
-	auto selection_data = data;
-	auto std_data = data;
+	auto bubble_data{ data };
+	auto merge_data{ data };
+	auto selection_data{ data };
+	auto std_data{ data };
 
 	timer.start();
-	bubble_sort(data.begin(), data.end(), func);
+	bubble_sort(bubble_data.begin(), bubble_data.end(), func);
 	long long bubble_time = timer.stop();
 
 	timer.start();
-	merge_sort(data.begin(), data.end(), func);
+	merge_sort(sorted_data.begin(), sorted_data.end(), func);
 	long long merge_time = timer.stop();
 
 	timer.start();
-	selection_sort(data.begin(), data.end(), func);
+	selection_sort(selection_data.begin(), selection_data.end(), func);
 	long long selection_time = timer.stop();
 
 	timer.start();
-	std::sort(data.begin(), data.end(), func);
+	std::sort(std_data.begin(), std_data.end(), func);
 	long long std_time = timer.stop();
-
-	sorted_data = merge_data;
 
 	std::map<long long, std::function<void(long long)>> sorted_times;
 	sorted_times.insert(std::pair<long long, std::function<void(long long)>>(bubble_time, display_bubble));

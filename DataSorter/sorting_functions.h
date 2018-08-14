@@ -3,6 +3,7 @@
 
 #include <cstddef>
 #include <iostream>
+#include <iterator>
 #include <utility>
 
 #include <conio.h>
@@ -16,7 +17,7 @@ namespace bruglesco {
 	inline void bubble_sort(Iterator begin, Iterator end, Func func = default_comparison)
 	{
 		std::cout << "Sorting with bubble sort. Press C to end sort.\n"
-			"----------|Finished\n";
+			<< "----------|Finished\n";
 
 		bool stopped{ false };
 		bool first_pass{ true };
@@ -48,8 +49,8 @@ namespace bruglesco {
 				}
 			}
 			--end;
-			if (first_pass) { first_pass = false; }
 			++count;
+			if (first_pass) { first_pass = false; }
 			if (count > size / 10)
 			{
 				std::cout << '*';
@@ -59,24 +60,25 @@ namespace bruglesco {
 		std::cout << "*\n";
 	}
 
-	// bugged. need to move not swap when rhs is smaller
 	template <typename Iterator, typename Func>
 	inline void merge_sort(Iterator begin, Iterator end, Func func = default_comparison)
 	{
 		std::cout << "Sorting with merge sort. Press C to end sort.\n"
-			"----------|Finished\n";
+			<< "----------|Finished\n";
 
 		bool stopped{ false };
 		std::size_t sub_size = 1;
 		std::size_t size = 0;
 		std::size_t count = 0;
+		std::size_t left_count = sub_size;
+		std::size_t right_count = sub_size;
 
 		do
 		{
 			auto it_lhs = begin;
 			auto it_rhs = begin;
-			std::size_t left_count = sub_size;
-			std::size_t right_count = sub_size;
+			left_count = sub_size;
+			right_count = sub_size;
 
 			while (it_rhs != end)
 			{
@@ -94,14 +96,14 @@ namespace bruglesco {
 				}
 				while (left_count > 0 && right_count > 0)
 				{
-					if (it_rhs == end || func(*it_lhs, *it_rhs))
+					if (it_rhs == end || !func(*it_lhs, *it_rhs))
 					{
 						--left_count;
 						++it_lhs;
 					}
 					else
 					{
-						std::swap(*it_lhs, *it_rhs);
+						std::move(it_rhs, it_rhs, it_lhs);
 						--right_count;
 						++it_rhs;
 						if (sub_size == 1)
@@ -126,6 +128,8 @@ namespace bruglesco {
 						++size;
 					}
 				}
+				left_count = sub_size;
+				right_count = sub_size;
 			}
 
 			sub_size *= 2;
@@ -152,7 +156,7 @@ namespace bruglesco {
 	inline void selection_sort(Iterator begin, Iterator end, Func func = default_comparison)
 	{
 		std::cout << "Sorting with selection sort. Press C to end sort.\n"
-			"----------|Finished\n";
+			<< "----------|Finished\n";
 
 		bool stopped{ false };
 		bool first_pass{ true };
