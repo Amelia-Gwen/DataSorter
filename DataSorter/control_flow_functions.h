@@ -1,6 +1,8 @@
 #ifndef BRUGLESCO_DATASORTER_CONTROL_FLOW_FUNCTIONS_H
 #define BRUGLESCO_DATASORTER_CONTROL_FLOW_FUNCTIONS_H
 
+#include <functional>
+#include <map>
 #include <string>
 #include <vector>
 

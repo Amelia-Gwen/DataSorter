@@ -1,8 +1,6 @@
 #include <algorithm>
-#include <functional>
 #include <iomanip>
 #include <iostream>
-#include <map>
 
 #include "sorting_functions.h"
 #include "timing_function.h"

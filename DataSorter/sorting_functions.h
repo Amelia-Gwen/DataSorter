@@ -5,6 +5,8 @@
 #include <iostream>
 #include <utility>
 
+#include <conio.h>
+
 namespace bruglesco {
 
 	template <typename T>
@@ -14,15 +16,18 @@ namespace bruglesco {
 	inline void bubble_sort(Iterator begin, Iterator end, Func func = default_comparison)
 	{
 		std::cout << "Sorting with bubble sort. Press C to end sort.\n"
-			<< "----------|Finished\n";
+			"----------|Finished\n";
 
 		bool stopped{ false };
+		bool first_pass{ true };
+		std::size_t size = 0;
 		std::size_t count = 0;
 
 		while (!stopped && begin != end)
 		{
 			for (auto temp_rhs = begin; temp_rhs != end; ++temp_rhs)
 			{
+				if (first_pass) { ++size; }
 				auto temp_lhs = temp_rhs++;
 				if (temp_lhs != end && func(*temp_lhs, *temp_rhs))
 				{
@@ -43,9 +48,9 @@ namespace bruglesco {
 				}
 			}
 			--end;
-
+			if (first_pass) { first_pass = false; }
 			++count;
-			if (count > data.size() / 10)
+			if (count > size / 10)
 			{
 				std::cout << '*';
 				count = 0;
@@ -59,7 +64,7 @@ namespace bruglesco {
 	inline void merge_sort(Iterator begin, Iterator end, Func func = default_comparison)
 	{
 		std::cout << "Sorting with merge sort. Press C to end sort.\n"
-			<< "----------|Finished\n";
+			"----------|Finished\n";
 
 		bool stopped{ false };
 
@@ -127,9 +132,11 @@ namespace bruglesco {
 	inline void selection_sort(Iterator begin, Iterator end, Func func = default_comparison)
 	{
 		std::cout << "Sorting with selection sort. Press C to end sort.\n"
-			<< "----------|Finished\n";
+			"----------|Finished\n";
 
 		bool stopped{ false };
+		bool first_pass{ true };
+		std::size_t size = 0;
 		std::size_t count = 0;
 
 		while (!stopped && begin != end)
@@ -138,6 +145,7 @@ namespace bruglesco {
 			auto largest = begin;
 			for (auto temp = begin; temp != end; ++temp)
 			{
+				if (first_pass) { ++size; }
 				if (func(*temp, *smallest))
 				{
 					smallest = temp;
@@ -149,20 +157,20 @@ namespace bruglesco {
 			}
 			if (smallest != begin)
 			{
-				std::swap(*smallest, *begin)
+				std::swap(*smallest, *begin);
 			}
 			if (largest != --end)
 			{
-				std::swap(*largest, *end)
+				std::swap(*largest, *end);
 			}
 			if (begin == end)
 			{
 				stopped = true;
 			}
-			++begin
-
+			++begin;
+			if (first_pass) { first_pass = false; }
 			count += 2;
-			if (count > data.size() / 10)
+			if (count > size / 10)
 			{
 				std::cout << '*';
 				count = 0;
