@@ -18,12 +18,9 @@ namespace bruglesco
 
 	void sort_by(std::vector<student>& data, std::vector<student>& sorted_data, bool(*func)(student, student));
 
-	void display_times(std::map<long long, std::function<void(long long)>> times);
+	void display_times(std::map<long long, std::string> times);
 
-	void inline display_bubble(long long ms) { std::cout << "bubble sort took " << ms << "ms\n"; }
-	void inline display_merge(long long ms) { std::cout << "merge sort took " << ms << "ms\n"; }
-	void inline display_selection(long long ms) { std::cout << "selection sort took " << ms << "ms\n"; }
-	void inline display_std(long long ms) { std::cout << "std::sort took " << ms << "ms\n"; }
+	void inline display_time(long long ms, std::string sort_name) { std::cout << sort_name << " took " << ms << "ms\n"; }
 
 	void save_or_sort_again(std::vector<student>& data, std::vector<student>& sorted_data);
 

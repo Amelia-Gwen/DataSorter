@@ -14,7 +14,7 @@ void bruglesco::run_program(std::string file_name)
 
 	stream_source_to_local(data, file_name);
 
-	std::vector<student> sorted_data{data};
+	std::vector<student> sorted_data = data;
 
 	sort_data(data, sorted_data);
 
@@ -60,41 +60,43 @@ void bruglesco::sort_three_ways(std::vector<student>& data, std::vector<student>
 void bruglesco::sort_by(std::vector<student>& data, std::vector<student>& sorted_data, bool(*func)(student, student))
 {
 	timer timer;
-	auto bubble_data{ data };
-	auto merge_data{ data };
-	auto selection_data{ data };
-	auto std_data{ data };
 
+	auto bubble_data = data;
 	timer.start();
 	bubble_sort(bubble_data.begin(), bubble_data.end(), func);
 	long long bubble_time = timer.stop();
 
+	auto merge_data = data;
 	timer.start();
-	merge_sort(sorted_data.begin(), sorted_data.end(), func);
+	merge_sort(merge_data.begin(), merge_data.end(), func);
 	long long merge_time = timer.stop();
 
+	auto selection_data = data;
 	timer.start();
 	selection_sort(selection_data.begin(), selection_data.end(), func);
 	long long selection_time = timer.stop();
 
+	auto std_data = data;
 	timer.start();
 	std::sort(std_data.begin(), std_data.end(), func);
 	long long std_time = timer.stop();
 
-	std::map<long long, std::function<void(long long)>> sorted_times;
-	sorted_times.insert(std::pair<long long, std::function<void(long long)>>(bubble_time, display_bubble));
-	sorted_times.insert(std::pair<long long, std::function<void(long long)>>(merge_time, display_merge));
-	sorted_times.insert(std::pair<long long, std::function<void(long long)>>(selection_time, display_selection));
-	sorted_times.insert(std::pair<long long, std::function<void(long long)>>(std_time, display_std));
+	sorted_data = merge_data;
+
+	std::map<long long, std::string> sorted_times;
+	sorted_times.insert(std::pair<long long, std::string>(bubble_time, "bubble sort"));
+	sorted_times.insert(std::pair<long long, std::string>(merge_time, "merge sort"));
+	sorted_times.insert(std::pair<long long, std::string>(selection_time, "selection sort"));
+	sorted_times.insert(std::pair<long long, std::string>(std_time, "std sort"));
 
 	display_times(sorted_times);
 }
 
-void bruglesco::display_times(std::map<long long, std::function<void(long long)>> times)
+void bruglesco::display_times(std::map<long long, std::string> times)
 {
 	for (auto& time : times)
 	{
-		time.second(time.first);
+		display_time(time.first, time.second);
 	}
 }
 

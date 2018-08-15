@@ -17,13 +17,13 @@ namespace bruglesco {
 	inline void bubble_sort(Iterator begin, Iterator end, Func func = default_comparison)
 	{
 		std::cout << "Sorting with bubble sort. Press C to end sort.\n"
-			<< "----------|Finished\n";
+			"----------|Finished\n";
 
 		bool stopped{ false };
 		bool first_pass{ true };
 		std::size_t size = 0;
 		std::size_t count = 0;
-
+		// out of bounds or out of memory?
 		while (!stopped && begin != end)
 		{
 			for (auto temp_rhs = begin; temp_rhs != end; ++temp_rhs)
@@ -64,7 +64,7 @@ namespace bruglesco {
 	inline void merge_sort(Iterator begin, Iterator end, Func func = default_comparison)
 	{
 		std::cout << "Sorting with merge sort. Press C to end sort.\n"
-			<< "----------|Finished\n";
+			"----------|Finished\n";
 
 		bool stopped{ false };
 		std::size_t sub_size = 1;
@@ -156,7 +156,7 @@ namespace bruglesco {
 	inline void selection_sort(Iterator begin, Iterator end, Func func = default_comparison)
 	{
 		std::cout << "Sorting with selection sort. Press C to end sort.\n"
-			<< "----------|Finished\n";
+			"----------|Finished\n";
 
 		bool stopped{ false };
 		bool first_pass{ true };
