@@ -26,10 +26,11 @@ namespace bruglesco {
 		// out of bounds or out of memory?
 		while (!stopped && begin != end)
 		{
-			for (auto temp_rhs = begin; temp_rhs != end; ++temp_rhs)
+			for (auto temp_lhs = begin; temp_lhs != end; ++temp_lhs)
 			{
 				if (first_pass) { ++size; }
-				auto temp_lhs = temp_rhs++;
+				auto temp_rhs = temp_lhs;
+				++temp_rhs;
 				if (temp_rhs != end && func(*temp_lhs, *temp_rhs))
 				{
 					std::swap(*temp_lhs, *temp_rhs);
