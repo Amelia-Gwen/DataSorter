@@ -167,34 +167,21 @@ namespace bruglesco {
 		while (!stopped && begin != end)
 		{
 			auto smallest = begin;
-			auto largest = begin;
 			for (auto temp = begin; temp != end; ++temp)
 			{
-				if (first_pass) { ++size; }
-				if (func(*temp, *smallest))
+				if (func(*smallest, *temp)
 				{
 					smallest = temp;
 				}
-				if (func(*largest, *temp))
-				{
-					largest = temp;
-				}
+				if (first_pass) { ++count; }
 			}
 			if (smallest != begin)
 			{
 				std::swap(*smallest, *begin);
 			}
-			if (largest != --end)
-			{
-				std::swap(*largest, *end);
-			}
-			if (begin == end)
-			{
-				stopped = true;
-			}
 			++begin;
+
 			if (first_pass) { first_pass = false; }
-			count += 2;
 			if (count > size / 10)
 			{
 				std::cout << '*';
@@ -210,7 +197,6 @@ namespace bruglesco {
 				}
 			}
 		}
-
 		std::cout << "*\n";
 	}
 
