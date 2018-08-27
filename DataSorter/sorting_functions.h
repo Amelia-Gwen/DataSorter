@@ -23,7 +23,7 @@ namespace bruglesco {
 		bool first_pass{ true };
 		std::size_t size = 0;
 		std::size_t count = 0;
-		// out of bounds or out of memory?
+
 		while (!stopped && begin != end)
 		{
 			for (auto temp_lhs = begin; temp_lhs != end; ++temp_lhs)
@@ -68,88 +68,81 @@ namespace bruglesco {
 			"----------|Finished\n";
 
 		bool stopped{ false };
-		std::size_t sub_size = 1;
+		bool unsorted{ true };
 		std::size_t size = 0;
-		std::size_t count = 0;
-		std::size_t left_count = sub_size;
-		std::size_t right_count = sub_size;
+		std::size_t sub_size = 1;
 
-		do
+		while (!stopped && unsorted)
 		{
-			auto it_lhs = begin;
-			auto it_rhs = begin;
-			left_count = sub_size;
-			right_count = sub_size;
+			auto lhs = begin;
+			auto rhs = begin;
 
-			while (it_rhs != end)
+			for (std::size_t i = 0; i < sub_size; ++i)
 			{
-				for (std::size_t i = 0; i < sub_size; ++i)
-				{
-					++it_rhs;
-					if (sub_size == 1)
-					{
-						++size;
-					}
-					if (it_rhs == end)
-					{
-						break;
-					}
-				}
+				++rhs;
+				if (sub_size == 1) { ++size; }
+			}
+
+			while (rhs != end)
+			{
+				std::size_t left_count = sub_size;
+				std::size_t right_count = sub_size;
 				while (left_count > 0 && right_count > 0)
 				{
-					if (it_rhs == end || !func(*it_lhs, *it_rhs))
+					if (rhs == end) { break; }
+					if (*lhs > *rhs)
 					{
-						--left_count;
-						++it_lhs;
+						auto temp_lhs = rhs;
+						auto temp_rhs = rhs;
+						--temp_lhs;
+						while (temp_rhs != lhs)
+						{
+							std::swap(*temp_lhs, *temp_rhs);
+							--temp_lhs;
+							--temp_rhs;
+						}
+						++lhs;
+						if (rhs == end) { break; }
+						++rhs;
+						--right_count;
+						if (sub_size == 1) { ++size; }
 					}
 					else
 					{
-						std::move(it_rhs, it_rhs, it_lhs);
-						--right_count;
-						++it_rhs;
-						if (sub_size == 1)
-						{
-							++size;
-						}
+						++lhs;
+						--left_count;
 					}
 				}
 				for (std::size_t i = 0; i < left_count; ++i)
 				{
-					++it_lhs;
+					++lhs;
 				}
 				for (std::size_t i = 0; i < right_count; ++i)
 				{
-					if (it_rhs == end)
-					{
-						break;
-					}
-					++it_rhs;
-					if (sub_size == 1)
-					{
-						++size;
-					}
+					if (rhs == end || lhs == end) { break; }
+					++lhs;
+					++rhs;
+					if (sub_size == 1) { ++size; }
 				}
-				left_count = sub_size;
-				right_count = sub_size;
-			}
-
-			sub_size *= 2;
-			++count;
-			if (count > size / 10)
-			{
-				std::cout << '*';
-				count = 0;
-			}
-			if (_kbhit())
-			{
-				auto key = _getch();
-				if (key == 'c' || key == 'C')
+				for (std::size_t i = 0; i < sub_size; ++i)
 				{
-					stopped = true;
+					if (rhs == end) { break; }
+					++rhs;
+					if (sub_size == 1) { ++size; }
 				}
+			}
+			std::cout << '*';
+			sub_size *= 2;
+			if (sub_size > size) { unsorted = false; }
+		}
+		if (_kbhit())
+		{
+			auto key = _getch();
+			if (key == 'c' || key == 'C')
+			{
+				stopped = true;
 			}
 		}
-		while (!stopped && sub_size < size);
 		std::cout << '*\n';
 	}
 
