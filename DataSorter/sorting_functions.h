@@ -90,7 +90,7 @@ namespace bruglesco {
 				while (left_count > 0 && right_count > 0)
 				{
 					if (rhs == end) { break; }
-					if (*lhs > *rhs)
+					if (func(*lhs, *rhs))
 					{
 						auto temp_lhs = rhs;
 						auto temp_rhs = rhs;
