@@ -81,7 +81,7 @@ void bruglesco::sort_by(std::vector<student>& data, std::vector<student>& sorted
 	std::sort(std_data.begin(), std_data.end(), func);
 	long long std_time = timer.stop();
 
-	sorted_data = merge_data;
+	sorted_data = selection_data;
 
 	std::map<long long, std::string> sorted_times;
 	sorted_times.insert(std::pair<long long, std::string>(bubble_time, "bubble sort"));

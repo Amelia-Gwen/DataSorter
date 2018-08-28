@@ -75,20 +75,15 @@ namespace bruglesco {
 		while (!stopped && begin != end)
 		{
 			auto smallest = begin;
-			bool changed{ false };
 			for (auto temp = begin; temp != end; ++temp)
 			{
 				if (cmp(*temp, *smallest))
 				{
-					changed = true;
 					smallest = temp;
 				}
 				if (first_pass) { ++count; }
 			}
-			if (changed)
-			{
-				std::iter_swap(smallest, begin);
-			}
+			std::rotate(begin, smallest, end);
 			++begin;
 
 			if (first_pass) { first_pass = false; }
