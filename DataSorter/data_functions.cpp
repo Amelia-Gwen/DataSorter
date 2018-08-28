@@ -1,7 +1,7 @@
+#include "data_functions.h"
+
 #include <iostream>
 #include <sstream>
-
-#include "data_functions.h"
 
 void bruglesco::stream_source_to_local(std::vector<student>& data, std::string file_name)
 {

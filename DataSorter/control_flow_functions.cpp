@@ -1,11 +1,13 @@
-#include <algorithm>
-#include <iomanip>
-#include <iostream>
+#include "control_flow_functions.h"
 
 #include "sorting_functions.h"
 #include "timing_function.h"
 
-#include "control_flow_functions.h"
+#include <algorithm>
+#include <iomanip>
+#include <iostream>
+
+void inline display_time(long long ms, std::string sort_name) { std::cout << sort_name << " took " << ms << "ms\n"; }
 
 void bruglesco::run_program(std::string file_name)
 {

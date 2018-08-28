@@ -1,13 +1,13 @@
 #ifndef BRUGLESCO_DATASORTER_SORTING_FUNCTIONS_H
 #define BRUGLESCO_DATASORTER_SORTING_FUNCTIONS_H
 
+#include <conio.h>
+
 #include <cstddef>
 #include <functional>
 #include <iostream>
 #include <iterator>
 #include <utility>
-
-#include <conio.h>
 
 namespace bruglesco {
 	template <typename Iterator, typename Comparator = std::less<typename std::iterator_traits<RandIterator>::value_type>>

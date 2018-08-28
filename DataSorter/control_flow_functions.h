@@ -1,12 +1,12 @@
 #ifndef BRUGLESCO_DATASORTER_CONTROL_FLOW_FUNCTIONS_H
 #define BRUGLESCO_DATASORTER_CONTROL_FLOW_FUNCTIONS_H
 
+#include "data_functions.h"
+
 #include <functional>
 #include <map>
 #include <string>
 #include <vector>
-
-#include "data_functions.h"
 
 namespace bruglesco
 {
@@ -19,8 +19,6 @@ namespace bruglesco
 	void sort_by(std::vector<student>& data, std::vector<student>& sorted_data, bool(*func)(student, student));
 
 	void display_times(std::map<long long, std::string> times);
-
-	void inline display_time(long long ms, std::string sort_name) { std::cout << sort_name << " took " << ms << "ms\n"; }
 
 	void save_or_sort_again(std::vector<student>& data, std::vector<student>& sorted_data);
 
