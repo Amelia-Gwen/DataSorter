@@ -159,7 +159,7 @@ namespace bruglesco {
 			auto smallest = begin;
 			for (auto temp = begin; temp != end; ++temp)
 			{
-				if (cmp(*temp, *smallest)
+				if (cmp(*temp, *smallest))
 				{
 					smallest = temp;
 				}
