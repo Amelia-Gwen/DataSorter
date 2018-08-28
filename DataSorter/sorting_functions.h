@@ -2,6 +2,7 @@
 #define BRUGLESCO_DATASORTER_SORTING_FUNCTIONS_H
 
 #include <cstddef>
+#include <functional>
 #include <iostream>
 #include <iterator>
 #include <utility>
@@ -9,12 +10,8 @@
 #include <conio.h>
 
 namespace bruglesco {
-
-	template <typename T>
-	bool default_comparison(T lhs, T rhs) { return lhs > rhs; }
-
-	template <typename Iterator, typename Func>
-	inline void bubble_sort(Iterator begin, Iterator end, Func func = default_comparison)
+	template <typename Iterator, typename Comparator = std::less<typename std::iterator_traits<RandIterator>::value_type>>
+	inline void bubble_sort(Iterator begin, Iterator end, Comparator cmp = Comparator())
 	{
 		std::cout << "Sorting with bubble sort. Press C to end sort.\n"
 			"----------|Finished\n";
@@ -31,7 +28,7 @@ namespace bruglesco {
 				if (first_pass) { ++size; }
 				auto temp_rhs = temp_lhs;
 				++temp_rhs;
-				if (temp_rhs != end && func(*temp_lhs, *temp_rhs))
+				if (temp_rhs != end && !cmp(*temp_lhs, *temp_rhs))
 				{
 					std::swap(*temp_lhs, *temp_rhs);
 				}
@@ -61,8 +58,8 @@ namespace bruglesco {
 		std::cout << "*\n";
 	}
 
-	template <typename Iterator, typename Func>
-	inline void merge_sort(Iterator begin, Iterator end, Func func = default_comparison)
+	template <typename Iterator, typename Comparator = std::less<typename std::iterator_traits<RandIterator>::value_type>>
+	inline void merge_sort(Iterator begin, Iterator end, Comparator cmp = Comparator())
 	{
 		std::cout << "Sorting with merge sort. Press C to end sort.\n"
 			"----------|Finished\n";
@@ -90,7 +87,7 @@ namespace bruglesco {
 				while (left_count > 0 && right_count > 0)
 				{
 					if (rhs == end) { break; }
-					if (func(*lhs, *rhs))
+					if (cmp(*rhs, *lhs))
 					{
 						auto temp_lhs = rhs;
 						auto temp_rhs = rhs;
@@ -146,8 +143,8 @@ namespace bruglesco {
 		std::cout << '*\n';
 	}
 
-	template <typename Iterator, typename Func>
-	inline void selection_sort(Iterator begin, Iterator end, Func func = default_comparison)
+	template <typename Iterator, typename Comparator = std::less<typename std::iterator_traits<RandIterator>::value_type>>
+	inline void selection_sort(Iterator begin, Iterator end, Comparator cmp = Comparator())
 	{
 		std::cout << "Sorting with selection sort. Press C to end sort.\n"
 			"----------|Finished\n";
@@ -162,7 +159,7 @@ namespace bruglesco {
 			auto smallest = begin;
 			for (auto temp = begin; temp != end; ++temp)
 			{
-				if (func(*smallest, *temp)
+				if (cmp(*temp, *smallest)
 				{
 					smallest = temp;
 				}
