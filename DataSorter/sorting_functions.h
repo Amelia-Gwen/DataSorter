@@ -10,7 +10,7 @@
 #include <utility>
 
 namespace bruglesco {
-	template <typename Iterator, typename Comparator = std::less<typename std::iterator_traits<RandIterator>::value_type>>
+	template <typename Iterator, typename Comparator = std::less<>>
 	inline void bubble_sort(Iterator begin, Iterator end, Comparator cmp = Comparator())
 	{
 		std::cout << "Sorting with bubble sort. Press C to end sort.\n"
@@ -61,7 +61,7 @@ namespace bruglesco {
 		std::cout << "*\n";
 	}
 
-	template <typename Iterator, typename Comparator = std::less<typename std::iterator_traits<RandIterator>::value_type>>
+	template <typename Iterator, typename Comparator = std::less<>>
 	inline void selection_sort(Iterator begin, Iterator end, Comparator cmp = Comparator())
 	{
 		std::cout << "Sorting with selection sort. Press C to end sort.\n"
@@ -105,7 +105,7 @@ namespace bruglesco {
 		std::cout << "*\n";
 	}
 
-	template <typename Iterator, typename Comparator = std::less<typename std::iterator_traits<RandIterator>::value_type>>
+	template <typename Iterator, typename Comparator = std::less<>>
 	inline void merge_sort(Iterator begin, Iterator end, Comparator cmp = Comparator())
 	{
 		std::cout << "Sorting with merge sort. Press C to end sort.\n"
