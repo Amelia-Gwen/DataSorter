@@ -1,6 +1,6 @@
 # DataSorter
 
-*Note: master branch represents the original project submission. Refactoring branch represents subsequent fixes to known 
+*Note: master branch represents the original project submission. Refactoring branch represents subsequent fixes to known issues
 
 A list of decisions made in no particular order.
 
