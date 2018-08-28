@@ -153,12 +153,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="control_flow_functions.cpp" />
     <ClCompile Include="DataSorter.cpp" />
-    <ClCompile Include="helper_functions.cpp" />
-    <ClCompile Include="sorting_functions.cpp" />
+    <ClCompile Include="data_functions.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="helper_functions.h" />
+    <ClInclude Include="control_flow_functions.h" />
+    <ClInclude Include="data_functions.h" />
     <ClInclude Include="sorting_functions.h" />
     <ClInclude Include="timing_function.h" />
   </ItemGroup>

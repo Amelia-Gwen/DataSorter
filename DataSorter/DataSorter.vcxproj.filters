@@ -18,21 +18,24 @@
     <ClCompile Include="DataSorter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="helper_functions.cpp">
+    <ClCompile Include="data_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sorting_functions.cpp">
+    <ClCompile Include="control_flow_functions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="helper_functions.h">
+    <ClInclude Include="timing_function.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="sorting_functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="timing_function.h">
+    <ClInclude Include="data_functions.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="control_flow_functions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
