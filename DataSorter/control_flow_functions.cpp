@@ -66,15 +66,15 @@ void bruglesco::sort_by(std::vector<student>& data, std::vector<student>& sorted
 	bubble_sort(bubble_data.begin(), bubble_data.end(), func);
 	long long bubble_time = timer.stop();
 
-	auto merge_data = data;
-	timer.start();
-	merge_sort(merge_data.begin(), merge_data.end(), func);
-	long long merge_time = timer.stop();
-
 	auto selection_data = data;
 	timer.start();
 	selection_sort(selection_data.begin(), selection_data.end(), func);
 	long long selection_time = timer.stop();
+
+	auto merge_data = data;
+	timer.start();
+	merge_sort(merge_data.begin(), merge_data.end(), func);
+	long long merge_time = timer.stop();
 
 	auto std_data = data;
 	timer.start();

@@ -23,14 +23,16 @@ namespace bruglesco {
 
 		while (!stopped && begin != end)
 		{
+			bool changed{ false };
 			for (auto temp_lhs = begin; temp_lhs != end; ++temp_lhs)
 			{
 				if (first_pass) { ++size; }
 				auto temp_rhs = temp_lhs;
 				++temp_rhs;
-				if (temp_rhs != end && !cmp(*temp_lhs, *temp_rhs))
+				if (temp_rhs != end && cmp(*temp_rhs, *temp_lhs))
 				{
-					std::swap(*temp_lhs, *temp_rhs);
+					changed = true;
+					std::iter_swap(temp_lhs, temp_rhs);
 				}
 
 				if (_kbhit())
@@ -54,6 +56,56 @@ namespace bruglesco {
 				std::cout << '*';
 				count = 0;
 			}
+			if (!changed) { stopped = true; }
+		}
+		std::cout << "*\n";
+	}
+
+	template <typename Iterator, typename Comparator = std::less<typename std::iterator_traits<RandIterator>::value_type>>
+	inline void selection_sort(Iterator begin, Iterator end, Comparator cmp = Comparator())
+	{
+		std::cout << "Sorting with selection sort. Press C to end sort.\n"
+			"----------|Finished\n";
+
+		bool stopped{ false };
+		bool first_pass{ true };
+		std::size_t size = 0;
+		std::size_t count = 0;
+
+		while (!stopped && begin != end)
+		{
+			auto smallest = begin;
+			bool changed{ false };
+			for (auto temp = begin; temp != end; ++temp)
+			{
+				if (cmp(*temp, *smallest))
+				{
+					changed = true;
+					smallest = temp;
+				}
+				if (first_pass) { ++count; }
+			}
+			if (changed)
+			{
+				std::iter_swap(smallest, begin);
+			}
+			++begin;
+
+			if (first_pass) { first_pass = false; }
+			if (count > size / 10)
+			{
+				std::cout << '*';
+				count = 0;
+			}
+
+			if (_kbhit())
+			{
+				auto key = _getch();
+				if (key == 'c' || key == 'C')
+				{
+					stopped = true;
+				}
+			}
 		}
 		std::cout << "*\n";
 	}
@@ -65,6 +117,7 @@ namespace bruglesco {
 			"----------|Finished\n";
 
 		bool stopped{ false };
+		if (begin == end) { stopped = true; }
 		bool unsorted{ true };
 		std::size_t size = 0;
 		std::size_t sub_size = 1;
@@ -140,55 +193,7 @@ namespace bruglesco {
 				stopped = true;
 			}
 		}
-		std::cout << '*\n';
-	}
-
-	template <typename Iterator, typename Comparator = std::less<typename std::iterator_traits<RandIterator>::value_type>>
-	inline void selection_sort(Iterator begin, Iterator end, Comparator cmp = Comparator())
-	{
-		std::cout << "Sorting with selection sort. Press C to end sort.\n"
-			"----------|Finished\n";
-
-		bool stopped{ false };
-		bool first_pass{ true };
-		std::size_t size = 0;
-		std::size_t count = 0;
-
-		while (!stopped && begin != end)
-		{
-			auto smallest = begin;
-			for (auto temp = begin; temp != end; ++temp)
-			{
-				if (cmp(*temp, *smallest))
-				{
-					smallest = temp;
-				}
-				if (first_pass) { ++count; }
-			}
-			if (smallest != begin)
-			{
-				std::swap(*smallest, *begin);
-			}
-			++begin;
-
-			if (first_pass) { first_pass = false; }
-			if (count > size / 10)
-			{
-				std::cout << '*';
-				count = 0;
-			}
-
-			if (_kbhit())
-			{
-				auto key = _getch();
-				if (key == 'c' || key == 'C')
-				{
-					stopped = true;
-				}
-			}
-		}
 		std::cout << "*\n";
 	}
-
 }
 #endif // !BRUGLESCO_DATASORTER_SORTING_FUNCTIONS_H
