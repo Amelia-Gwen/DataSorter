@@ -11,7 +11,7 @@ The chosen sort methods were:
   
   Selection Sort
   
-*Note: I would usually use std::sort for any sorting needs.
+*Note: I would usually use std::sort for any sorting needs. This project was made as an interview response and as such responds to constraints not listed.
 
 I considered an OOP approach to the problem as I am more familiar with that. What I did is more of a mix of procedural and dynamic styles. The major drawback to the current approach is that it is not very scalable.
 
