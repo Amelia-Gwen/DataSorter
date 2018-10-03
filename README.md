@@ -1,7 +1,4 @@
 # DataSorter
-
-*Note: master branch represents the original project submission. Refactoring branch represents subsequent fixes to known issues
-
 A list of decisions made in no particular order.
 
 Use of console UI seemed simple and within the scope set for the project.
@@ -14,7 +11,7 @@ The chosen sort methods were:
   
   Selection Sort
   
-*Note: I would usually use std::sort for any sorting needs.
+*Note: I would usually use std::sort for any sorting needs. This project was made as an interview response and as such responds to constraints not listed.
 
 I considered an OOP approach to the problem as I am more familiar with that. What I did is more of a mix of procedural and dynamic styles. The major drawback to the current approach is that it is not very scalable.
 
@@ -25,3 +22,5 @@ the use of \_kbhit() and \_getch() for non-blocking IO is non-portable but the p
 The script I used to generate the data is also provided as well.
 
 I will also note that I was canceling out of the bubble sort every time when using it with the large data set. I chose bubble sort because I wanted the opportunity to see just how slow it really is and this was an eye opening experience.
+
+The sorting templates went through a public code review. It can be found here : https://codereview.stackexchange.com/questions/202625/sorting-three-ways
